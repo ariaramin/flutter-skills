@@ -6,7 +6,7 @@ A curated collection of production-focused AI skills for Flutter and Dart develo
 
 ## What’s included ✨
 
-This repository contains **29 portable `.skill` packages**. Each package is a ZIP archive containing:
+This repository contains **40 portable `.skill` packages**. Each package is a ZIP archive containing:
 
 - `SKILL.md` — the skill’s scope, trigger conditions, and operating guidance.
 - `references/` — focused material for version-sensitive, platform-specific, or advanced work where applicable.
@@ -34,19 +34,27 @@ Installation screens and terminology vary between tools. Refer to your tool’s 
 - [Flutter package selection](skills/flutter-package-plugin-selection.skill) — evidence-based dependency evaluation and migration decisions.
 - [Flutter lints & static analysis](skills/flutter-lints-static-analysis-engineering.skill) — analyzer configuration, lint governance, and CI quality gates.
 - [Flutter production build & release](skills/flutter-production-build-release.skill) — production builds, signing, packaging, stores, and release recovery.
+- [Flutter Firebase Core](skills/flutter-firebase-core-engineering.skill) — Firebase bootstrap, generated configuration, environments, and app-instance lifecycle.
 
 ### UI and user experience
 
 - [Flutter animations](skills/flutter-animations-production-engineering.skill) — Material motion, transitions, accessibility, and animation performance.
+- [Flutter Confetti](skills/flutter-confetti-engineering.skill) — lifecycle-safe, accessible celebration effects and particle performance tuning.
+- [Flutter native splash](skills/flutter-native-splash-engineering.skill) — Android, iOS, and Web launch resources, transitions, flavors, and startup behavior.
 - [Flutter image performance](skills/flutter-image-performance.skill) — image loading, decoding, caching, rendering, and memory use.
 - [Flutter image_picker](skills/flutter-image-picker-production-engineering.skill) — photo/video acquisition, lost-data recovery, platform behavior, and media safety.
+- [Flutter pro_image_editor](skills/flutter-pro-image-editor-engineering.skill) — production image editing, state persistence, export, privacy, and large-image performance.
+- [Flutter video_player](skills/flutter-video-player-production-engineering.skill) — cross-platform playback, controller lifecycle, streaming delivery, codecs, and decoder performance.
 - [Flutter Skeletonizer](skills/flutter-skeletonizer-engineering.skill) — accessible, performant loading states.
 - [Flutter SVG](skills/flutter-svg-engineering.skill) — rendering, theming, caching, performance, and SVG security.
 
 ### Performance and reliability
 
+- [Flutter Firebase Analytics](skills/flutter-firebase-analytics.skill) — product-event schemas, consent, identity, screen and ecommerce measurement, DebugView, and reporting quality.
+- [Flutter Sentry](skills/flutter-sentry-engineering.skill) — crash reporting, tracing, symbolication, privacy, and production observability.
 - [Flutter concurrency, memory & performance](skills/flutter-concurrency-memory-performance.skill) — isolates, async workflows, lifecycle management, and resource efficiency.
 - [Flutter jank optimization](skills/flutter-performance-jank-optimization.skill) — profiling and fixing dropped frames, slow scrolling, and latency.
+- [Flutter UI performance](skills/flutter-ui-performance-engineering.skill) — frame-budget analysis, rebuild/layout/paint/raster optimization, and production profiling.
 - [Flutter memory leaks](skills/flutter-memory-leak-engineering.skill) — lifecycle defects, leak tracking, and regression prevention.
 - [Flutter production logging](skills/flutter-production-logging.skill) — structured, privacy-conscious diagnostics and error reporting.
 - [Flutter Squadron concurrency](skills/flutter-squadron-concurrency-engineering.skill) — workers, worker pools, cancellation, and web workers.
@@ -57,12 +65,15 @@ Installation screens and terminology vary between tools. Refer to your tool’s 
 - [Flutter go_router](skills/flutter-go-router-engineering.skill) — routing, deep links, redirects, nested navigation, and web URLs.
 - [Flutter app links](skills/flutter-app-links-deep-link-engineering.skill) — Universal Links, Android App Links, and secure link delivery.
 - [Flutter url_launcher](skills/flutter-url-launcher-engineering.skill) — safe external URI handling across platforms.
+- [Flutter share_plus](skills/flutter-share-plus-engineering.skill) — cross-platform text, URI, file, and generated-content sharing.
 - [Flutter WebView](skills/flutter-webview-production-engineering.skill) — embedded web content, navigation policy, security, and lifecycle.
 - [Flutter local notifications](skills/flutter-local-notifications-production-engineering.skill) — permissions, scheduling, time zones, interactions, and recovery.
 - [Flutter permission_handler](skills/flutter-permission-handler-engineering.skill) — runtime permissions, platform configuration, and privacy-aware flows.
 
 ### Storage, dependency injection, and security 🔒
 
+- [Flutter Supabase](skills/flutter-supabase-engineering.skill) — Auth, RLS, database access, Realtime, Storage, Edge Functions, and production security.
+- [Flutter Drift](skills/flutter-drift-persistence-engineering.skill) — relational persistence, reactive queries, migrations, concurrency, and cross-platform SQLite performance.
 - [Flutter Hive](skills/flutter-hive-persistence-engineering.skill) — local persistence, schema changes, encryption, and recovery.
 - [Flutter path_provider](skills/flutter-path-provider-production-storage.skill) — secure, durable filesystem storage and cleanup.
 - [Flutter get_it & injectable](skills/flutter-get-it-injectable-dependency-injection.skill) — dependency lifetimes, scopes, startup, and testing.
