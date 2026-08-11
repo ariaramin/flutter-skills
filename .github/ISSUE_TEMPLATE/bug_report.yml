@@ -1,0 +1,30 @@
+name: Report a problem
+description: Report inaccurate, broken, or unsafe skill guidance.
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: "Thanks for helping improve the collection. Do not include secrets or private project information."
+  - type: input
+    id: skill
+    attributes:
+      label: Skill archive
+      description: Which `.skill` file is affected?
+      placeholder: flutter-dio-engineering.skill
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What is wrong?
+      description: Describe the incorrect, unclear, or unsafe guidance.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence or reproduction
+      description: Include a minimal example, expected behavior, and links to primary documentation where useful.
+    validations:
+      required: true

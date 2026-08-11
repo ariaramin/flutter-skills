@@ -1,0 +1,23 @@
+name: Validate skill archives
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate archives and manifests
+        shell: bash
+        run: |
+          shopt -s nullglob
+          skills=(skills/*.skill)
+          (( ${#skills[@]} )) || { echo 'No .skill archives found.'; exit 1; }
+          for skill in "${skills[@]}"; do
+            unzip -t "$skill"
+            manifests=$(unzip -Z1 "$skill" | grep -Ec '^[^/]+/SKILL\.md$')
+            [[ "$manifests" == 1 ]] || { echo "$skill must contain one top-level SKILL.md"; exit 1; }
+          done

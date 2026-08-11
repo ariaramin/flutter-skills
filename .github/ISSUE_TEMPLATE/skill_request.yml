@@ -1,0 +1,31 @@
+name: Request a skill
+description: Propose a focused Flutter or Dart skill.
+title: "[Skill]: "
+labels: [enhancement]
+body:
+  - type: input
+    id: title
+    attributes:
+      label: Proposed skill name
+      placeholder: flutter-example-engineering
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem to solve
+      description: Explain the recurring development problem and who benefits.
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Suggested scope
+      description: List the APIs, platforms, failure modes, or workflows the skill should cover.
+    validations:
+      required: true
+  - type: textarea
+    id: sources
+    attributes:
+      label: Primary sources
+      description: Link official documentation, specifications, or source repositories.
