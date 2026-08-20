@@ -6,7 +6,7 @@ A curated collection of production-focused AI skills for Flutter and Dart develo
 
 ## What’s included ✨
 
-This repository contains **40 portable `.skill` packages**. Each package is a ZIP archive containing:
+This repository contains **49 portable `.skill` packages**. Each package is a ZIP archive containing:
 
 - `SKILL.md` — the skill’s scope, trigger conditions, and operating guidance.
 - `references/` — focused material for version-sensitive, platform-specific, or advanced work where applicable.
@@ -28,9 +28,14 @@ Installation screens and terminology vary between tools. Refer to your tool’s 
 
 ### Foundations and architecture
 
+- [Dart args](skills/dart-args-production-cli.skill) — production command-line interfaces, subcommands, flags, and executable tooling.
 - [Dart & Flutter Equatable](skills/dart-flutter-equatable-engineering.skill) — value equality, immutable state, and reliable rebuild behavior.
 - [Freezed](skills/freezed-production-engineering.skill) — immutable models, sealed unions, JSON serialization, and code generation.
 - [Dart & Flutter FFI](skills/dart-flutter-ffi-systems-engineering.skill) — native integration, memory ownership, ABI safety, and platform packaging.
+- [Dart meta](skills/dart-meta.skill) — effective annotations, API contracts, immutability, and analyzer-guided modernization.
+- [Senior Flutter architecture](skills/senior-flutter-architecture.skill) — production Flutter/Dart architecture with explicit trade-offs.
+- [Senior mobile architecture](skills/senior-mobile-architecture.skill) — architecture reviews and refactoring across iOS, Android, and cross-platform apps.
+- [Flutter multi-environment](skills/flutter-multi-environment.skill) — development/staging/production flavors, configuration, and delivery pipelines.
 - [Flutter package selection](skills/flutter-package-plugin-selection.skill) — evidence-based dependency evaluation and migration decisions.
 - [Flutter lints & static analysis](skills/flutter-lints-static-analysis-engineering.skill) — analyzer configuration, lint governance, and CI quality gates.
 - [Flutter production build & release](skills/flutter-production-build-release.skill) — production builds, signing, packaging, stores, and release recovery.
@@ -38,6 +43,7 @@ Installation screens and terminology vary between tools. Refer to your tool’s 
 
 ### UI and user experience
 
+- [HTML to Flutter](skills/html-to-flutter.skill) — production Flutter ports of HTML/CSS/JavaScript interfaces.
 - [Flutter animations](skills/flutter-animations-production-engineering.skill) — Material motion, transitions, accessibility, and animation performance.
 - [Flutter Confetti](skills/flutter-confetti-engineering.skill) — lifecycle-safe, accessible celebration effects and particle performance tuning.
 - [Flutter native splash](skills/flutter-native-splash-engineering.skill) — Android, iOS, and Web launch resources, transitions, flavors, and startup behavior.
@@ -50,6 +56,7 @@ Installation screens and terminology vary between tools. Refer to your tool’s 
 
 ### Performance and reliability
 
+- [Flutter expert tips](skills/flutter-expert-tips.skill) — practical Flutter/Dart implementation, debugging, refactoring, and modernization guidance.
 - [Flutter Firebase Analytics](skills/flutter-firebase-analytics.skill) — product-event schemas, consent, identity, screen and ecommerce measurement, DebugView, and reporting quality.
 - [Flutter Sentry](skills/flutter-sentry-engineering.skill) — crash reporting, tracing, symbolication, privacy, and production observability.
 - [Flutter concurrency, memory & performance](skills/flutter-concurrency-memory-performance.skill) — isolates, async workflows, lifecycle management, and resource efficiency.
@@ -61,6 +68,7 @@ Installation screens and terminology vary between tools. Refer to your tool’s 
 
 ### Networking, navigation, and platform capabilities
 
+- [Flutter Firebase Messaging](skills/flutter-firebase-messaging.skill) — reliable, secure FCM delivery across Android, iOS, macOS, and Web.
 - [Flutter Dio](skills/flutter-dio-engineering.skill) — production HTTP clients, auth, retries, transfers, and observability.
 - [Flutter go_router](skills/flutter-go-router-engineering.skill) — routing, deep links, redirects, nested navigation, and web URLs.
 - [Flutter app links](skills/flutter-app-links-deep-link-engineering.skill) — Universal Links, Android App Links, and secure link delivery.
@@ -80,6 +88,10 @@ Installation screens and terminology vary between tools. Refer to your tool’s 
 - [Flutter secure storage](skills/flutter-secure-storage-security-engineering.skill) — protected credentials and platform key stores.
 - [Flutter application security](skills/flutter-application-security-engineering.skill) — end-to-end application security reviews and remediation.
 - [Flutter app hardening](skills/flutter-app-hardening-reverse-engineering.skill) — reverse-engineering resistance, tamper protection, and secure releases.
+
+### Testing and delivery
+
+- [Test before deploy](skills/test-before-deploy.skill) — select and review release-ready test coverage using the “34 Test Before Deploy” taxonomy.
 
 ## Repository structure
 
