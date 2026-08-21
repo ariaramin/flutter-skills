@@ -6,7 +6,7 @@ A curated collection of production-focused AI skills for Flutter and Dart develo
 
 ## What’s included ✨
 
-This repository contains **49 portable `.skill` packages**. Each package is a ZIP archive containing:
+This repository contains **53 portable `.skill` packages**. Each package is a ZIP archive containing:
 
 - `SKILL.md` — the skill’s scope, trigger conditions, and operating guidance.
 - `references/` — focused material for version-sensitive, platform-specific, or advanced work where applicable.
@@ -40,6 +40,7 @@ Installation screens and terminology vary between tools. Refer to your tool’s 
 - [Flutter lints & static analysis](skills/flutter-lints-static-analysis-engineering.skill) — analyzer configuration, lint governance, and CI quality gates.
 - [Flutter production build & release](skills/flutter-production-build-release.skill) — production builds, signing, packaging, stores, and release recovery.
 - [Flutter Firebase Core](skills/flutter-firebase-core-engineering.skill) — Firebase bootstrap, generated configuration, environments, and app-instance lifecycle.
+- [Flutter mobile development](skills/flutter-mobile-development.skill) — practical Flutter delivery across app structure, UI, state, platform, testing, and release work.
 
 ### UI and user experience
 
@@ -54,6 +55,7 @@ Installation screens and terminology vary between tools. Refer to your tool’s 
 - [Flutter video_player](skills/flutter-video-player-production-engineering.skill) — cross-platform playback, controller lifecycle, streaming delivery, codecs, and decoder performance.
 - [Flutter Skeletonizer](skills/flutter-skeletonizer-engineering.skill) — accessible, performant loading states.
 - [Flutter SVG](skills/flutter-svg-engineering.skill) — rendering, theming, caching, performance, and SVG security.
+- [Flutter design system from design.md](skills/flutter-design-system-from-design-md.skill) — converting a `design.md` spec into Flutter theme tokens, components, states, and validation checks.
 
 ### Performance and reliability
 
@@ -61,6 +63,7 @@ Installation screens and terminology vary between tools. Refer to your tool’s 
 - [Flutter Firebase Analytics](skills/flutter-firebase-analytics.skill) — product-event schemas, consent, identity, screen and ecommerce measurement, DebugView, and reporting quality.
 - [Flutter Sentry](skills/flutter-sentry-engineering.skill) — crash reporting, tracing, symbolication, privacy, and production observability.
 - [Flutter concurrency, memory & performance](skills/flutter-concurrency-memory-performance.skill) — isolates, async workflows, lifecycle management, and resource efficiency.
+- [Flutter caching](skills/flutter-caching-engineering.skill) — cache policy, invalidation, offline data, HTTP freshness, and resource bounds.
 - [Flutter jank optimization](skills/flutter-performance-jank-optimization.skill) — profiling and fixing dropped frames, slow scrolling, and latency.
 - [Flutter UI performance](skills/flutter-ui-performance-engineering.skill) — frame-budget analysis, rebuild/layout/paint/raster optimization, and production profiling.
 - [Flutter memory leaks](skills/flutter-memory-leak-engineering.skill) — lifecycle defects, leak tracking, and regression prevention.
