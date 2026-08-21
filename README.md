@@ -44,6 +44,7 @@ Installation screens and terminology vary between tools. Refer to your tool’s 
 ### UI and user experience
 
 - [HTML to Flutter](skills/html-to-flutter.skill) — production Flutter ports of HTML/CSS/JavaScript interfaces.
+- [React to Flutter](skills/react-to-flutter.skill) — idiomatic, behavior-preserving React web migrations to Flutter.
 - [Flutter animations](skills/flutter-animations-production-engineering.skill) — Material motion, transitions, accessibility, and animation performance.
 - [Flutter Confetti](skills/flutter-confetti-engineering.skill) — lifecycle-safe, accessible celebration effects and particle performance tuning.
 - [Flutter native splash](skills/flutter-native-splash-engineering.skill) — Android, iOS, and Web launch resources, transitions, flavors, and startup behavior.
