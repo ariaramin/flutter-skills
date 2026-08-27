@@ -6,7 +6,7 @@ A curated collection of production-focused AI skills for Flutter and Dart develo
 
 ## What’s included ✨
 
-This repository contains **53 portable `.skill` packages**. Each package is a ZIP archive containing:
+This repository contains **54 portable `.skill` packages**. Each package is a ZIP archive containing:
 
 - `SKILL.md` — the skill’s scope, trigger conditions, and operating guidance.
 - `references/` — focused material for version-sensitive, platform-specific, or advanced work where applicable.
@@ -23,6 +23,14 @@ The skills are designed for use with AI coding tools that support the `.skill` p
 4. Work normally—the skill’s trigger description determines when it should guide the assistant.
 
 Installation screens and terminology vary between tools. Refer to your tool’s documentation if it does not offer an import or install action for skill archives.
+
+### Flutter motion engineering
+
+Download [Flutter motion engineering](skills/flutter-motion-engineering.skill) for source-backed guidance on Apple-quality motion, interruptible springs, gesture velocity, platform navigation, reduced motion, and rendering performance.
+
+The package includes a core `SKILL.md`, three detailed reference guides, four Dart example files, and six regression tests under `references/examples/`. The examples passed formatting, analysis, and tests on Flutter 3.47.0 / Dart 3.13.0; application performance still requires profiling on target devices.
+
+Use this skill for framework-level motion engineering. The separate [Flutter animations](skills/flutter-animations-production-engineering.skill) skill focuses on the Material `animations` package.
 
 ## Skill catalog
 
@@ -47,6 +55,7 @@ Installation screens and terminology vary between tools. Refer to your tool’s 
 - [HTML to Flutter](skills/html-to-flutter.skill) — production Flutter ports of HTML/CSS/JavaScript interfaces.
 - [React to Flutter](skills/react-to-flutter.skill) — idiomatic, behavior-preserving React web migrations to Flutter.
 - [Flutter animations](skills/flutter-animations-production-engineering.skill) — Material motion, transitions, accessibility, and animation performance.
+- [Flutter motion engineering](skills/flutter-motion-engineering.skill) — Apple-quality interaction principles, interruptible springs, platform transitions, rendering diagnostics, accessibility, and tested Dart examples.
 - [Flutter Confetti](skills/flutter-confetti-engineering.skill) — lifecycle-safe, accessible celebration effects and particle performance tuning.
 - [Flutter native splash](skills/flutter-native-splash-engineering.skill) — Android, iOS, and Web launch resources, transitions, flavors, and startup behavior.
 - [Flutter image performance](skills/flutter-image-performance.skill) — image loading, decoding, caching, rendering, and memory use.
