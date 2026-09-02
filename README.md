@@ -6,7 +6,7 @@ A curated collection of production-focused AI skills for Flutter and Dart develo
 
 ## What’s included ✨
 
-This repository contains **54 portable `.skill` packages**. Each package is a ZIP archive containing:
+This repository contains **55 portable `.skill` packages**. Each package is a ZIP archive containing:
 
 - `SKILL.md` — the skill’s scope, trigger conditions, and operating guidance.
 - `references/` — focused material for version-sensitive, platform-specific, or advanced work where applicable.
@@ -83,6 +83,7 @@ Use this skill for framework-level motion engineering. The separate [Flutter ani
 
 - [Flutter Firebase Messaging](skills/flutter-firebase-messaging.skill) — reliable, secure FCM delivery across Android, iOS, macOS, and Web.
 - [Flutter Dio](skills/flutter-dio-engineering.skill) — production HTTP clients, auth, retries, transfers, and observability.
+- [Flutter Dio cache interceptor](skills/flutter-dio-cache-interceptor-engineering.skill) — source-grounded HTTP caching, revalidation, store selection, offline fallback, key isolation, and invalidation with `dio_cache_interceptor`.
 - [Flutter go_router](skills/flutter-go-router-engineering.skill) — routing, deep links, redirects, nested navigation, and web URLs.
 - [Flutter app links](skills/flutter-app-links-deep-link-engineering.skill) — Universal Links, Android App Links, and secure link delivery.
 - [Flutter url_launcher](skills/flutter-url-launcher-engineering.skill) — safe external URI handling across platforms.
