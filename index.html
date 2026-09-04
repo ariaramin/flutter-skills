@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f5f7fa" />
+    <meta name="description" content="Production-ready Flutter and Dart skills for AI coding tools." />
+    <title>Flutter Skills — Production knowledge, packaged</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%2307111f'/%3E%3Ctext x='32' y='40' text-anchor='middle' font-family='Arial' font-size='25' font-weight='700' fill='white'%3EFS%3C/text%3E%3C/svg%3E" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="header-wrap">
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a class="brand" href="#top" aria-label="Flutter Skills home">
+          <span class="brand-badge" aria-hidden="true">FS</span>
+          <span>Flutter Skills</span>
+        </a>
+        <div class="nav-links">
+          <a href="#skills">Collections</a>
+          <a href="#toolbox">Catalog</a>
+          <a href="#contribute">Contribute</a>
+        </div>
+        <a class="nav-action" href="#toolbox">Browse skills <span aria-hidden="true">↘</span></a>
+        <button class="menu-button" type="button" aria-label="Open navigation" aria-expanded="false">Menu</button>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero page-shell">
+        <div class="hero-copy reveal">
+          <p class="eyebrow"><span></span> An open-source project by Aria Ramin</p>
+          <h1>Flutter knowledge,<br /><em>ready on demand.</em></h1>
+          <p class="hero-lede">A curated library of reusable skills that helps AI coding tools make better decisions across the entire Flutter lifecycle.</p>
+          <p class="repo-line">Repository <a href="https://github.com/ariaramin/flutter-skills" target="_blank" rel="noreferrer">github.com/ariaramin/flutter-skills <span>↗</span></a></p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#toolbox">Explore all skills <span>↘</span></a>
+            <a class="button button-quiet" href="https://github.com/ariaramin/flutter-skills" target="_blank" rel="noreferrer">GitHub <span>↗</span></a>
+          </div>
+          <dl class="hero-stats">
+            <div><dt>53</dt><dd>portable skills</dd></div>
+            <div><dt>7</dt><dd>core disciplines</dd></div>
+            <div><dt>MIT</dt><dd>open license</dd></div>
+          </dl>
+        </div>
+
+        <div class="hero-art reveal reveal-delay" aria-hidden="true">
+          <div class="aura"></div>
+          <div class="official-logo-wrap"><img class="official-flutter-logo" src="https://flutter.dev/assets/icon_flutter.817b4a56b047d0d36b338dd9ffd44dbd.svg" alt="" /><span>Independent community project</span></div>
+          <div class="art-chip chip-top"><i></i> architecture</div>
+          <div class="art-chip chip-right"><i></i> performance</div>
+          <div class="art-chip chip-bottom"><i></i> ship safely</div>
+          <svg class="art-orbit" viewBox="0 0 500 500"><circle cx="250" cy="250" r="202" /></svg>
+        </div>
+      </section>
+
+      <section class="signal-strip" aria-label="Skill coverage">
+        <div class="signal-track"><span>Architecture</span><i>◆</i><span>UI engineering</span><i>◆</i><span>Performance</span><i>◆</i><span>Security</span><i>◆</i><span>Data</span><i>◆</i><span>Testing</span><i>◆</i><span>Release</span><i>◆</i></div>
+      </section>
+
+      <section class="page-shell section" id="skills">
+        <div class="section-intro reveal">
+          <div><p class="eyebrow">01 · Collections</p><h2>Made for the work<br />behind the <em>widget.</em></h2></div>
+          <p>Each skill packages decision-making, failure modes, and field-tested guidance—not another generic prompt.</p>
+        </div>
+        <div class="category-grid" id="category-grid"></div>
+      </section>
+
+      <section class="page-shell featured-section">
+        <article class="featured-lead reveal">
+          <span class="pack-label">Featured collection · 04 skills</span>
+          <div class="pack-symbol">⌘</div>
+          <div><h3>Build the foundation<br /><em>once.</em></h3><p>Architecture, immutable state, environments, and the practices that keep a Flutter codebase easy to change.</p></div>
+          <a href="#toolbox" aria-label="Browse foundation skills">Explore <span>↗</span></a>
+        </article>
+        <div class="featured-side">
+          <article class="mini-pack reveal reveal-delay"><span>UI & experience</span><strong>Make every frame feel intentional.</strong><small>04 skills</small></article>
+          <article class="mini-pack mini-pack-dark reveal reveal-delay-2"><span>Production</span><strong>Profile, protect, test, and ship.</strong><small>13 skills</small></article>
+        </div>
+      </section>
+
+      <section class="catalog-section" id="toolbox">
+        <div class="page-shell">
+          <div class="section-intro catalog-intro reveal">
+            <div><p class="eyebrow">02 · Skill catalog</p><h2>Choose what<br /><em>you need.</em></h2></div>
+            <p>Select any combination. We’ll generate install commands for exactly those skill archives.</p>
+          </div>
+
+          <div class="catalog-controls">
+            <label class="search-wrap"><span aria-hidden="true">⌕</span><input id="skill-search" type="search" placeholder="Search the catalog" aria-label="Search skills" /></label>
+            <div class="filter-wrap" id="filter-wrap" role="group" aria-label="Filter skills"></div>
+          </div>
+
+          <div class="skill-grid" id="skill-grid"></div>
+          <p class="empty-state" id="empty-state" hidden>No skills match that search.</p>
+
+          <div class="selection-bar" id="selection-bar" hidden aria-live="polite">
+            <div class="selection-summary"><span class="selection-mark">✓</span><strong><span id="selection-count">0</span> selected</strong><button class="clear-selection" id="clear-selection" type="button">Clear</button></div>
+            <button class="button button-primary" id="generate-commands" type="button">Get install commands <span>↘</span></button>
+          </div>
+
+          <div class="command-panel" id="command-panel" hidden>
+            <div class="command-heading"><div><p class="eyebrow">Ready to install</p><h3>Your selected <em>skill set.</em></h3></div><button class="close-panel" id="close-panel" type="button" aria-label="Close install commands">×</button></div>
+            <p class="command-note" id="command-note">These commands download the selected `.skill` archives into <code>./selected-skills</code>. Import those archives into your compatible AI coding tool.</p>
+            <div class="command-tabs" id="command-tabs" role="tablist" aria-label="Install command formats">
+              <button class="command-tab active" type="button" data-command="curl" role="tab" aria-selected="true">curl</button>
+              <button class="command-tab" type="button" data-command="wget" role="tab" aria-selected="false">wget</button>
+              <button class="command-tab" type="button" data-command="npx" role="tab" aria-selected="false">npx</button>
+              <button class="command-tab" type="button" data-command="git" role="tab" aria-selected="false">git</button>
+            </div>
+            <pre id="install-commands"><code></code></pre>
+            <div class="command-footer"><button class="button button-dark copy-button" id="copy-commands" type="button">Copy commands <span>⧉</span></button><span class="copy-status" id="copy-status" role="status"></span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="page-shell contribute-section" id="contribute">
+        <div class="contribute-glow" aria-hidden="true"></div>
+        <div class="contribute-copy reveal"><p class="eyebrow">03 · Open collection</p><h2>Turn experience<br />into <em>infrastructure.</em></h2><p>Have a hard-won Flutter lesson? Package the workflow, trade-offs, and edge cases so the entire community can reuse it.</p><a class="button button-light" href="https://github.com/ariaramin/flutter-skills" target="_blank" rel="noreferrer">Contribute a skill <span>↗</span></a></div>
+        <ol class="contribute-steps reveal reveal-delay"><li><span>01</span><div><strong>Capture</strong><p>Name the real problem and when the skill should activate.</p></div></li><li><span>02</span><div><strong>Package</strong><p>Document the decisions, pitfalls, and supporting references.</p></div></li><li><span>03</span><div><strong>Share</strong><p>Submit a focused, portable archive for review.</p></div></li></ol>
+      </section>
+    </main>
+
+    <footer class="page-shell site-footer">
+      <a class="brand" href="#top"><span class="brand-badge" aria-hidden="true">FS</span><span>Flutter Skills</span></a>
+      <p>Created by <strong>Aria Ramin</strong>.</p>
+      <div><a href="https://github.com/ariaramin/flutter-skills" target="_blank" rel="noreferrer">GitHub repository ↗</a><a href="CONTRIBUTING.md">Contributing</a></div>
+    </footer>
+    <p class="page-shell trademark">Flutter and the related logo are trademarks of Google LLC. This is an independent community project and is not endorsed by Google.</p>
+
+    <script src="script.js"></script>
+  </body>
+</html>

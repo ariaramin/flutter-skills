@@ -6,7 +6,7 @@ A curated collection of production-focused AI skills for Flutter and Dart develo
 
 ## What’s included ✨
 
-This repository contains **55 portable `.skill` packages**. Each package is a ZIP archive containing:
+This repository contains **56 portable `.skill` packages**. Each package is a ZIP archive containing:
 
 - `SKILL.md` — the skill’s scope, trigger conditions, and operating guidance.
 - `references/` — focused material for version-sensitive, platform-specific, or advanced work where applicable.
@@ -43,6 +43,7 @@ Use this skill for framework-level motion engineering. The separate [Flutter ani
 - [Dart meta](skills/dart-meta.skill) — effective annotations, API contracts, immutability, and analyzer-guided modernization.
 - [Senior Flutter architecture](skills/senior-flutter-architecture.skill) — production Flutter/Dart architecture with explicit trade-offs.
 - [Senior mobile architecture](skills/senior-mobile-architecture.skill) — architecture reviews and refactoring across iOS, Android, and cross-platform apps.
+- [Flutter production engineering](skills/flutter-production-engineering.skill) — production-grade Flutter and Dart engineering guidance for architecture, performance, scalability, cross-platform behavior, testing, profiling, and maintainability.
 - [Flutter multi-environment](skills/flutter-multi-environment.skill) — development/staging/production flavors, configuration, and delivery pipelines.
 - [Flutter package selection](skills/flutter-package-plugin-selection.skill) — evidence-based dependency evaluation and migration decisions.
 - [Flutter lints & static analysis](skills/flutter-lints-static-analysis-engineering.skill) — analyzer configuration, lint governance, and CI quality gates.
@@ -137,3 +138,31 @@ For the publishing and release process, see [PUBLISHING.md](PUBLISHING.md).
 ## License
 
 Distributed under the [MIT License](LICENSE). See [CONTRIBUTING.md](CONTRIBUTING.md), [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md), and [SECURITY.md](SECURITY.md) for participation and reporting guidelines.
+
+## Personal skills landing page
+
+This repository also includes a dependency-free portfolio page in `index.html`, `styles.css`, and `script.js`.
+
+### Run locally
+
+Open `index.html` directly, or serve the repository root with any static server:
+
+```sh
+python3 -m http.server 8000
+```
+
+Then visit `http://localhost:8000`.
+
+### Customize it
+
+- Replace the placeholder name, copy, links, and email in `index.html`.
+- Edit the centralized `skills` array at the top of `script.js` to add, remove, or rename skills.
+- Update the `categories` array in the same file when you need different overview groups.
+- Change the color tokens at the top of `styles.css` to retheme the page.
+- Replace the placeholder GitHub, LinkedIn, and email URLs in `index.html`, including the contribution CTA.
+- Select catalog cards to generate copyable `curl` download commands for the chosen `.skill` archives; update `rawSkillsBase` in `script.js` if the repository moves.
+- The command drawer also provides `wget`, `npx degit`, and Git sparse-checkout variants. `npx degit` downloads the complete `skills/` folder; the other variants support selected archives.
+
+### Deploy to GitHub Pages
+
+Push the repository to GitHub, open **Settings → Pages**, choose **Deploy from a branch**, select `main` and `/ (root)`, then save. GitHub Pages will serve `index.html` as the site entry point.
