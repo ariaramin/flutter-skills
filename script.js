@@ -6,6 +6,8 @@ const skills = [
   { name: 'Flutter multi-environment', group: 'Foundations', icon: '⌂', description: 'Development, staging, production flavors, and configuration.' },
   { name: 'Flutter design systems', group: 'UI & UX', icon: '▦', description: 'Tokens, components, states, and design.md to Flutter workflows.', featured: true },
   { name: 'Flutter animations', group: 'UI & UX', icon: '◌', description: 'Accessible motion, transitions, and animation performance.' },
+  { name: 'Rive Flutter', group: 'UI & UX', icon: '◈', description: 'C++ runtime integration, state machines, and multi-platform rendering.' },
+  { name: 'Lottie for Flutter', group: 'UI & UX', icon: '◎', description: 'Pure Dart vector animations, composition caching, delegates, and markers.' },
   { name: 'Flutter SVG', group: 'UI & UX', icon: '✦', description: 'Rendering, theming, caching, performance, and SVG security.' },
   { name: 'Flutter image performance', group: 'UI & UX', icon: '▧', description: 'Image loading, decoding, caching, and memory use.' },
   { name: 'Flutter UI performance', group: 'Performance', icon: '⌁', description: 'Frame-budget analysis, rebuild, layout, paint, and raster work.', featured: true },
@@ -29,7 +31,7 @@ const skills = [
 
 const categories = [
   ['Foundations', '⌘', 'Architecture, Dart, state, and app structure.', '05'],
-  ['UI & UX', '◌', 'Components, motion, images, and design systems.', '04'],
+  ['UI & UX', '◌', 'Components, motion, images, and design systems.', '06'],
   ['Platform & data', '⇄', 'Networking, navigation, storage, and services.', '04'],
   ['Production', '⤴', 'Performance, security, testing, and delivery.', '13'],
 ];
@@ -43,6 +45,8 @@ const skillFiles = {
   'Flutter multi-environment': 'flutter-multi-environment.skill',
   'Flutter design systems': 'flutter-design-system-from-design-md.skill',
   'Flutter animations': 'flutter-animations-production-engineering.skill',
+  'Rive Flutter': 'rive-flutter.skill',
+  'Lottie for Flutter': 'lottie-flutter.skill',
   'Flutter SVG': 'flutter-svg-engineering.skill',
   'Flutter image performance': 'flutter-image-performance.skill',
   'Flutter UI performance': 'flutter-ui-performance-engineering.skill',

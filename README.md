@@ -6,7 +6,7 @@ A curated collection of production-focused AI skills for Flutter and Dart develo
 
 ## What’s included ✨
 
-This repository contains **58 portable `.skill` packages**. Each package is a ZIP archive containing:
+This repository contains **60 portable `.skill` packages**. Each package is a ZIP archive containing:
 
 - `SKILL.md` — the skill’s scope, trigger conditions, and operating guidance.
 - `references/` — focused material for version-sensitive, platform-specific, or advanced work where applicable.
@@ -57,6 +57,8 @@ Use this skill for framework-level motion engineering. The separate [Flutter ani
 - [React to Flutter](skills/react-to-flutter.skill) — idiomatic, behavior-preserving React web migrations to Flutter.
 - [Flutter animations](skills/flutter-animations-production-engineering.skill) — Material motion, transitions, accessibility, and animation performance.
 - [Flutter motion engineering](skills/flutter-motion-engineering.skill) — Apple-quality interaction principles, interruptible springs, platform transitions, rendering diagnostics, accessibility, and tested Dart examples.
+- [Rive Flutter](skills/rive-flutter.skill) — modern C++ runtime integration, state machines, inputs, layout, lifecycle management, and multi-platform rendering performance with `rive`.
+- [Lottie for Flutter](skills/lottie-flutter.skill) — pure Dart vector animations, composition caching, frame rate throttling, dynamic delegates, marker playback, and list performance with `lottie`.
 - [Flutter Confetti](skills/flutter-confetti-engineering.skill) — lifecycle-safe, accessible celebration effects and particle performance tuning.
 - [Flutter native splash](skills/flutter-native-splash-engineering.skill) — Android, iOS, and Web launch resources, transitions, flavors, and startup behavior.
 - [Flutter image performance](skills/flutter-image-performance.skill) — image loading, decoding, caching, rendering, and memory use.
