@@ -6,7 +6,7 @@ A curated collection of production-focused AI skills for Flutter and Dart develo
 
 ## What’s included ✨
 
-This repository contains **60 portable `.skill` packages**. Each package is a ZIP archive containing:
+This repository contains **61 portable `.skill` packages**. Each package is a ZIP archive containing:
 
 - `SKILL.md` — the skill’s scope, trigger conditions, and operating guidance.
 - `references/` — focused material for version-sensitive, platform-specific, or advanced work where applicable.
@@ -78,6 +78,7 @@ Use this skill for framework-level motion engineering. The separate [Flutter ani
 - [Flutter Sentry](skills/flutter-sentry-engineering.skill) — crash reporting, tracing, symbolication, privacy, and production observability.
 - [Flutter concurrency, memory & performance](skills/flutter-concurrency-memory-performance.skill) — isolates, async workflows, lifecycle management, and resource efficiency.
 - [Flutter caching](skills/flutter-caching-engineering.skill) — cache policy, invalidation, offline data, HTTP freshness, and resource bounds.
+- [Mobile API caching](skills/mobile-api-caching.skill) — cross-platform cache strategy, HTTP semantics, offline synchronization, account isolation, and production validation for iOS, Android, Flutter, React Native, and Kotlin Multiplatform.
 - [Flutter jank optimization](skills/flutter-performance-jank-optimization.skill) — profiling and fixing dropped frames, slow scrolling, and latency.
 - [Flutter UI performance](skills/flutter-ui-performance-engineering.skill) — frame-budget analysis, rebuild/layout/paint/raster optimization, and production profiling.
 - [Flutter memory leaks](skills/flutter-memory-leak-engineering.skill) — lifecycle defects, leak tracking, and regression prevention.
