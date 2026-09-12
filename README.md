@@ -6,7 +6,7 @@ A curated collection of production-focused AI skills for Flutter and Dart develo
 
 ## What’s included ✨
 
-This repository contains **62 portable `.skill` packages**. Each package is a ZIP archive containing:
+This repository contains **63 portable `.skill` packages**. Each package is a ZIP archive containing:
 
 - `SKILL.md` — the skill’s scope, trigger conditions, and operating guidance.
 - `references/` — focused material for version-sensitive, platform-specific, or advanced work where applicable.
@@ -65,6 +65,7 @@ Use this skill for framework-level motion engineering. The separate [Flutter ani
 - [Flutter image_picker](skills/flutter-image-picker-production-engineering.skill) — photo/video acquisition, lost-data recovery, platform behavior, and media safety.
 - [Flutter pro_image_editor](skills/flutter-pro-image-editor-engineering.skill) — production image editing, state persistence, export, privacy, and large-image performance.
 - [Flutter video_player](skills/flutter-video-player-production-engineering.skill) — cross-platform playback, controller lifecycle, streaming delivery, codecs, and decoder performance.
+- [Flutter CamerAwesome](skills/camerawesome-flutter.skill) — production camera preview, capture modes, ML Kit image analysis, orientation controls, and CameraX/AVFoundation performance.
 - [Flutter Skeletonizer](skills/flutter-skeletonizer-engineering.skill) — accessible, performant loading states.
 - [Flutter SVG](skills/flutter-svg-engineering.skill) — rendering, theming, caching, performance, and SVG security.
 - [Flutter Pinput](skills/flutter-pinput.skill) — production-grade PIN, OTP, and SMS verification fields with iOS/Android autofill, custom cursors, animations, and accessible theming.
