@@ -18,6 +18,7 @@ const skills = [
   { name: 'Flutter go_router', group: 'Platform & data', icon: '↗', description: 'Routing, deep links, redirects, and nested navigation.' },
   { name: 'Flutter Supabase', group: 'Platform & data', icon: '▲', description: 'Auth, RLS, database access, realtime, storage, and edge functions.' },
   { name: 'Flutter Drift', group: 'Platform & data', icon: '▤', description: 'Relational persistence, migrations, and reactive SQLite queries.' },
+  { name: 'document_scan for Flutter', group: 'Platform & data', icon: '▣', description: 'Document corners, perspective correction, live frames, and scan testing.' },
   { name: 'Flutter secure storage', group: 'Security', icon: '◇', description: 'Protected credentials and platform key stores.' },
   { name: 'Flutter application security', group: 'Security', icon: '⬡', description: 'End-to-end application security reviews and remediation.' },
   { name: 'Flutter app hardening', group: 'Security', icon: '◈', description: 'Tamper protection, reverse-engineering resistance, and releases.' },
@@ -32,7 +33,7 @@ const skills = [
 const categories = [
   ['Foundations', '⌘', 'Architecture, Dart, state, and app structure.', '05'],
   ['UI & UX', '◌', 'Components, motion, images, and design systems.', '06'],
-  ['Platform & data', '⇄', 'Networking, navigation, storage, and services.', '04'],
+  ['Platform & data', '⇄', 'Networking, navigation, storage, and services.', '05'],
   ['Production', '⤴', 'Performance, security, testing, and delivery.', '13'],
 ];
 
@@ -57,6 +58,7 @@ const skillFiles = {
   'Flutter go_router': 'flutter-go-router-engineering.skill',
   'Flutter Supabase': 'flutter-supabase-engineering.skill',
   'Flutter Drift': 'flutter-drift-persistence-engineering.skill',
+  'document_scan for Flutter': 'document-scan-flutter.skill',
   'Flutter secure storage': 'flutter-secure-storage-security-engineering.skill',
   'Flutter application security': 'flutter-application-security-engineering.skill',
   'Flutter app hardening': 'flutter-app-hardening-reverse-engineering.skill',
