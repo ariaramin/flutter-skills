@@ -1,0 +1,27 @@
+# Glossary
+
+- **Abstraction** — context-specific model of relevant characteristics (p13).
+- **Abstract factory** — creator contract for a compatible family of products (p87).
+- **Adapter** — translates an existing service API into the client contract (p149).
+- **Builder** — assembles a product through construction steps (p103).
+- **Caretaker** — retains mementos without inspecting their state (p320).
+- **Client** — code consuming a pattern's contract rather than its concrete component (p71 onward).
+- **Command** — operation packaged with information needed to execute it (p268).
+- **Component** — shared contract for a Composite leaf/container or Decorator wrapper (pp177, 191).
+- **Concrete product** — implementation returned through a product interface (p75).
+- **Context** — object that delegates to a Strategy or State instance (pp352, 368).
+- **Creator** — Factory Method participant owning product-dependent logic and a creation hook (pp75–76).
+- **Extrinsic state** — per-use context supplied to a Flyweight rather than stored in it (pp224–228).
+- **Intrinsic state** — shared, stable state stored in a Flyweight (pp224–228).
+- **Iterator** — traversal object that hides collection representation (p289).
+- **Mediator** — object coordinating peers that otherwise depend on each other (p304).
+- **Memento** — saved state used to restore an originator (p320).
+- **Observer** — subscriber notified by a publisher (p336).
+- **Originator** — object creating and restoring its own mementos (p320).
+- **Product family** — related products whose variants must be compatible (p87).
+- **Proxy** — substitute with the service's interface that controls access to it (p233).
+- **Receiver** — object carrying out an operation represented by a Command (p268).
+- **State** — object carrying behavior associated with a context's current state (p352).
+- **Strategy** — interchangeable implementation of one algorithm family (p368).
+- **Template method** — superclass algorithm skeleton with overridable steps (p381).
+- **Visitor** — external operation dispatched to a concrete element type (p393).

@@ -6,7 +6,7 @@ A curated collection of production-focused AI skills for Flutter and Dart develo
 
 ## What’s included ✨
 
-This repository contains **64 portable `.skill` packages**. Each package is a ZIP archive containing:
+This repository contains **66 portable `.skill` packages**. Each package is a ZIP archive containing:
 
 - `SKILL.md` — the skill’s scope, trigger conditions, and operating guidance.
 - `references/` — focused material for version-sensitive, platform-specific, or advanced work where applicable.
@@ -42,6 +42,7 @@ Use this skill for framework-level motion engineering. The separate [Flutter ani
 - [Dart & Flutter FFI](skills/dart-flutter-ffi-systems-engineering.skill) — native integration, memory ownership, ABI safety, and platform packaging.
 - [Dart meta](skills/dart-meta.skill) — effective annotations, API contracts, immutability, and analyzer-guided modernization.
 - [Senior Flutter architecture](skills/senior-flutter-architecture.skill) — production Flutter/Dart architecture with explicit trade-offs.
+- [Design patterns](skills/shvets-design-patterns.skill) — apply 22 classic object-oriented patterns using source-backed decisions, examples, and trade-offs.
 - [Senior mobile architecture](skills/senior-mobile-architecture.skill) — architecture reviews and refactoring across iOS, Android, and cross-platform apps.
 - [Flutter production engineering](skills/flutter-production-engineering.skill) — production-grade Flutter and Dart engineering guidance for architecture, performance, scalability, cross-platform behavior, testing, profiling, and maintainability.
 - [Flutter multi-environment](skills/flutter-multi-environment.skill) — development/staging/production flavors, configuration, and delivery pipelines.
@@ -106,6 +107,7 @@ Use this skill for framework-level motion engineering. The separate [Flutter ani
 - [Flutter Supabase](skills/flutter-supabase-engineering.skill) — Auth, RLS, database access, Realtime, Storage, Edge Functions, and production security.
 - [Flutter Drift](skills/flutter-drift-persistence-engineering.skill) — relational persistence, reactive queries, migrations, concurrency, and cross-platform SQLite performance.
 - [Flutter Hive](skills/flutter-hive-persistence-engineering.skill) — local persistence, schema changes, encryption, and recovery.
+- [hydrated_bloc](skills/hydrated-bloc.skill) — production Bloc/Cubit state persistence, keys, schema evolution, security, and testing.
 - [Flutter path_provider](skills/flutter-path-provider-production-storage.skill) — secure, durable filesystem storage and cleanup.
 - [Flutter get_it & injectable](skills/flutter-get-it-injectable-dependency-injection.skill) — dependency lifetimes, scopes, startup, and testing.
 - [Flutter secure storage](skills/flutter-secure-storage-security-engineering.skill) — protected credentials and platform key stores.

@@ -1,6 +1,7 @@
 const skills = [
   { name: 'Flutter production engineering', group: 'Foundations', icon: '⚡', description: 'Production-grade architecture, performance, profiling, and maintainability.', featured: true },
   { name: 'Senior Flutter architecture', group: 'Foundations', icon: '⌘', description: 'Production architecture, boundaries, and explicit trade-offs.', featured: true },
+  { name: 'Design patterns', group: 'Foundations', icon: '◈', description: 'Choose and apply 22 classic object-oriented patterns with concrete trade-offs.' },
   { name: 'Dart & Flutter Equatable', group: 'Foundations', icon: '◆', description: 'Value equality, immutable state, and reliable rebuilds.' },
   { name: 'Freezed', group: 'Foundations', icon: '◇', description: 'Immutable models, unions, JSON serialization, and code generation.' },
   { name: 'Flutter multi-environment', group: 'Foundations', icon: '⌂', description: 'Development, staging, production flavors, and configuration.' },
@@ -18,6 +19,7 @@ const skills = [
   { name: 'Flutter go_router', group: 'Platform & data', icon: '↗', description: 'Routing, deep links, redirects, and nested navigation.' },
   { name: 'Flutter Supabase', group: 'Platform & data', icon: '▲', description: 'Auth, RLS, database access, realtime, storage, and edge functions.' },
   { name: 'Flutter Drift', group: 'Platform & data', icon: '▤', description: 'Relational persistence, migrations, and reactive SQLite queries.' },
+  { name: 'hydrated_bloc', group: 'Platform & data', icon: '▣', description: 'Persist and restore Bloc/Cubit state across restarts with safe schemas and keys.' },
   { name: 'document_scan for Flutter', group: 'Platform & data', icon: '▣', description: 'Document corners, perspective correction, live frames, and scan testing.' },
   { name: 'Flutter secure storage', group: 'Security', icon: '◇', description: 'Protected credentials and platform key stores.' },
   { name: 'Flutter application security', group: 'Security', icon: '⬡', description: 'End-to-end application security reviews and remediation.' },
@@ -41,6 +43,7 @@ const rawSkillsBase = 'https://raw.githubusercontent.com/ariaramin/flutter-skill
 const skillFiles = {
   'Flutter production engineering': 'flutter-production-engineering.skill',
   'Senior Flutter architecture': 'senior-flutter-architecture.skill',
+  'Design patterns': 'shvets-design-patterns.skill',
   'Dart & Flutter Equatable': 'dart-flutter-equatable-engineering.skill',
   Freezed: 'freezed-production-engineering.skill',
   'Flutter multi-environment': 'flutter-multi-environment.skill',
@@ -58,6 +61,7 @@ const skillFiles = {
   'Flutter go_router': 'flutter-go-router-engineering.skill',
   'Flutter Supabase': 'flutter-supabase-engineering.skill',
   'Flutter Drift': 'flutter-drift-persistence-engineering.skill',
+  hydrated_bloc: 'hydrated-bloc.skill',
   'document_scan for Flutter': 'document-scan-flutter.skill',
   'Flutter secure storage': 'flutter-secure-storage-security-engineering.skill',
   'Flutter application security': 'flutter-application-security-engineering.skill',
