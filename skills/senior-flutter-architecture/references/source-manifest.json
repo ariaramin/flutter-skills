@@ -1,0 +1,23 @@
+{
+  "skill": "senior-flutter-architecture",
+  "base_skill": "senior-mobile-architecture",
+  "evidence_classes": {
+    "B-D1/B-D2/B-C/B-I": "Inherited provenance from base skill",
+    "F": "Official Flutter documentation",
+    "D": "Official Dart documentation",
+    "P": "Current project conventions",
+    "S": "Supplemental senior engineering guidance"
+  },
+  "primary_sources": [
+    "https://docs.flutter.dev/app-architecture/recommendations",
+    "https://docs.flutter.dev/app-architecture/guide",
+    "https://docs.flutter.dev/app-architecture/case-study",
+    "https://docs.flutter.dev/app-architecture/design-patterns/offline-first",
+    "https://docs.flutter.dev/ui/navigation",
+    "https://docs.flutter.dev/testing/overview",
+    "https://docs.flutter.dev/perf/best-practices",
+    "https://docs.flutter.dev/platform-integration/platform-channels",
+    "https://docs.flutter.dev/packages-and-plugins/developing-packages",
+    "https://dart.dev/language/concurrency"
+  ]
+}

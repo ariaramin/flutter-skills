@@ -1,0 +1,4 @@
+interface:
+  display_name: "Flutter Supabase Engineering"
+  short_description: "Build secure production Supabase Flutter apps"
+  default_prompt: "Use $flutter-supabase-engineering to review and improve this Flutter Supabase implementation."

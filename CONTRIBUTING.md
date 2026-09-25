@@ -11,7 +11,7 @@ Thanks for helping improve Flutter Skills. Contributions should make the guidanc
 
 ## Updating a skill
 
-Each `.skill` archive must retain this layout:
+Each skill folder must retain this layout:
 
 ```text
 skill-name/
@@ -19,19 +19,18 @@ skill-name/
   references/  # optional
 ```
 
-`SKILL.md` must remain the only top-level manifest. Package only the files needed by the skill and keep references narrowly focused.
+`SKILL.md` is the skill manifest. Include only the files the skill needs, and keep references narrowly focused.
 
-Before opening a pull request, validate every archive:
+Before opening a pull request, confirm every skill folder has a manifest:
 
 ```sh
-for skill in skills/*.skill; do
-  unzip -t "$skill"
-  unzip -Z1 "$skill" | rg '^[^/]+/SKILL\.md$'
+for manifest in skills/*/SKILL.md; do
+  test -f "$manifest"
 done
 ```
 
 ## Pull requests
 
-Explain what changed, why it is needed, and which skill archives were updated. The **Validate skill archives** check must pass before merge.
+Explain what changed, why it is needed, and which skill folders were updated. The **Validate skills** check must pass before merge.
 
 By contributing, you agree that your contribution may be distributed under the [MIT License](LICENSE).

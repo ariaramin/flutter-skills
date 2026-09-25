@@ -1,0 +1,4 @@
+interface:
+  display_name: "Flutter UI Performance Engineering"
+  short_description: "Diagnose and optimize Flutter UI performance"
+  default_prompt: "Use $flutter-ui-performance-engineering to diagnose and improve this Flutter UI performance issue."

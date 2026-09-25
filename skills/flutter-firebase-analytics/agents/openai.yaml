@@ -1,0 +1,4 @@
+interface:
+  display_name: "Flutter Firebase Analytics"
+  short_description: "Build trustworthy Flutter product analytics"
+  default_prompt: "Use $flutter-firebase-analytics to review this Flutter Firebase Analytics implementation."

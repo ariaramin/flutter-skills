@@ -1,0 +1,4 @@
+interface:
+  display_name: "Flutter Firebase Messaging"
+  short_description: "Build and review production Flutter FCM"
+  default_prompt: "Use $flutter-firebase-messaging to review this Flutter Firebase Messaging implementation."

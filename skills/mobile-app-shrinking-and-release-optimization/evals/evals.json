@@ -1,0 +1,23 @@
+{
+  "skill_name": "mobile-app-shrinking-and-release-optimization",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Our AGP 9.3 Android app uses Gson, JNI callbacks, Compose navigation, and resources selected from remote config. Release crashes after enabling R8 and resource optimization. Diagnose it and propose the smallest safe configuration changes without disabling optimization.",
+      "expected_output": "Inspects pinned versions and merged consumer rules; separates code and resource failures; retraces the crash; identifies JNI/reflection/dynamic-resource edges; proposes only evidence-backed member/resource rules; validates the exact optimized release and preserves mapping/native symbols.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "A Flutter app's uploaded Android bundle is 95 MB and its iOS archive is 180 MB. Create an evidence-driven size reduction plan that explains what to measure before editing and covers Dart, native plugins, assets, ABIs, delivery, obfuscation symbols, and startup regressions.",
+      "expected_output": "Rejects direct upload/archive comparisons; measures store/device-equivalent artifacts; uses Flutter size analysis and native platform analyzers; prioritizes dominant contributors; treats deferred delivery and obfuscation cautiously; includes symbol retention and device benchmarks.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Review a Kotlin Multiplatform library that ships Android AAR and iOS framework outputs. Consumers added broad keep rules and the iOS framework is unexpectedly large. Recommend library-author fixes, consumer validation, symbol handling, and target-specific measurements.",
+      "expected_output": "Separates Android whole-program R8 from Kotlin/Native and Apple linker behavior; narrows/publishes consumer rules and tests a minified app; audits exports, interop, frameworks, resources, and slices; retains mappings/dSYMs; avoids claiming one cross-platform shrinker model.",
+      "files": []
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "skill_name": "mobile-api-caching",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Our SwiftUI product list is fast after first load, but inventory can change every minute. Review the URLSession repository and choose a cache policy that still works in airplane mode without letting stale stock authorize checkout.",
+      "expected_output": "Separates browse-time stale product data from checkout-time authoritative inventory, reuses HTTP validators, scopes policy to the repository, and defines offline/failure behavior and deterministic tests.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Make this Android Compose messaging repository truly offline-first. Users can send and delete messages on two devices, duplicate sync workers sometimes run, and an old page occasionally overwrites a newer refresh.",
+      "expected_output": "Uses the local database as read source of truth, durable mutation IDs/tombstones/cursors, unique WorkManager sync, bounded retry and conflict rules, plus generation/version protection against stale overwrites.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Audit caching in a Flutter and React Native app where users see another account's localized dashboard after switching accounts. The cache key is currently just the URL and refresh fires on every screen focus.",
+      "expected_output": "Finds the key-isolation root cause, covers account/tenant/locale and query identity, cancels in-flight work on account switch, replaces focus refresh storms with an explicit freshness policy, and tests cross-account leakage.",
+      "files": []
+    }
+  ]
+}

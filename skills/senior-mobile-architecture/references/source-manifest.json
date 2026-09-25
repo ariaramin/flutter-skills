@@ -1,0 +1,27 @@
+{
+  "generated_at": "2026-08-19",
+  "skill": "senior-mobile-architecture",
+  "evidence_grades": {
+    "D1": "Direct transcript inspected",
+    "D2": "Direct video metadata/description/chapters inspected",
+    "C": "Instructor-authored companion material",
+    "I": "Cross-source inference",
+    "S": "Supplemental current/general engineering guidance"
+  },
+  "primary_channel": "https://www.youtube.com/@andrey_tech",
+  "instructor_companion": [
+    "https://andrey-tech.com/mobile-system-design-course",
+    "https://andrey-tech.com/mindmap"
+  ],
+  "full_transcript_sources": [
+    {
+      "title": "Lead Android Engineer Mock Interview – Facebook App System Design",
+      "youtube": "https://www.youtube.com/watch?v=-LWWvZksPp8",
+      "transcript_mirror": "https://sozai.app/transcript/lead-android-engineer-mock-interview-facebook-app-design/",
+      "grade": "D1"
+    }
+  ],
+  "known_channel_video_count_at_research": 47,
+  "reliably_inventoried_titles": 33,
+  "notes": "Counts reflect accessible search indexing, not a claim of full transcript coverage."
+}

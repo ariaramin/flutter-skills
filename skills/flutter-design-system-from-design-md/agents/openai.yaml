@@ -1,0 +1,4 @@
+interface:
+  display_name: "Flutter Design System"
+  short_description: "Build production Flutter design systems"
+  default_prompt: "Use $flutter-design-system-from-design-md to implement DESIGN.md as a custom Flutter design system."

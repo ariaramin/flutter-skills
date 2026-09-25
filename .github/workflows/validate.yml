@@ -1,4 +1,4 @@
-name: Validate skill archives
+name: Validate skills
 
 on:
   pull_request:
@@ -10,14 +10,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Validate archives and manifests
+      - name: Validate skill manifests
         shell: bash
         run: |
           shopt -s nullglob
-          skills=(skills/*.skill)
-          (( ${#skills[@]} )) || { echo 'No .skill archives found.'; exit 1; }
-          for skill in "${skills[@]}"; do
-            unzip -t "$skill"
-            manifests=$(unzip -Z1 "$skill" | grep -Ec '^[^/]+/SKILL\.md$')
-            [[ "$manifests" == 1 ]] || { echo "$skill must contain one top-level SKILL.md"; exit 1; }
+          archives=(skills/*.skill)
+          (( ${#archives[@]} == 0 )) || { echo 'Skills are folders with SKILL.md. Remove .skill archives.'; exit 1; }
+          manifests=(skills/*/SKILL.md)
+          (( ${#manifests[@]} )) || { echo 'No SKILL.md manifests found.'; exit 1; }
+          for dir in skills/*/; do
+            [[ -f "${dir}SKILL.md" ]] || { echo "$dir is missing SKILL.md"; exit 1; }
           done
+          echo "Validated ${#manifests[@]} skills."

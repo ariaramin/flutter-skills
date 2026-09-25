@@ -39,39 +39,39 @@ const categories = [
   ['Production', '⤴', 'Performance, security, testing, and delivery.', '13'],
 ];
 
-const rawSkillsBase = 'https://raw.githubusercontent.com/ariaramin/flutter-skills/main/skills';
+const repository = 'ariaramin/flutter-skills';
 const skillFiles = {
-  'Flutter production engineering': 'flutter-production-engineering.skill',
-  'Senior Flutter architecture': 'senior-flutter-architecture.skill',
-  'Design patterns': 'shvets-design-patterns.skill',
-  'Dart & Flutter Equatable': 'dart-flutter-equatable-engineering.skill',
-  Freezed: 'freezed-production-engineering.skill',
-  'Flutter multi-environment': 'flutter-multi-environment.skill',
-  'Flutter design systems': 'flutter-design-system-from-design-md.skill',
-  'Flutter animations': 'flutter-animations-production-engineering.skill',
-  'Rive Flutter': 'rive-flutter.skill',
-  'Lottie for Flutter': 'lottie-flutter.skill',
-  'Flutter SVG': 'flutter-svg-engineering.skill',
-  'Flutter image performance': 'flutter-image-performance.skill',
-  'Flutter UI performance': 'flutter-ui-performance-engineering.skill',
-  'Flutter jank optimization': 'flutter-performance-jank-optimization.skill',
-  'Flutter concurrency': 'flutter-concurrency-memory-performance.skill',
-  'Flutter memory leaks': 'flutter-memory-leak-engineering.skill',
-  'Flutter Dio': 'flutter-dio-engineering.skill',
-  'Flutter go_router': 'flutter-go-router-engineering.skill',
-  'Flutter Supabase': 'flutter-supabase-engineering.skill',
-  'Flutter Drift': 'flutter-drift-persistence-engineering.skill',
-  hydrated_bloc: 'hydrated-bloc.skill',
-  'document_scan for Flutter': 'document-scan-flutter.skill',
-  'Flutter secure storage': 'flutter-secure-storage-security-engineering.skill',
-  'Flutter application security': 'flutter-application-security-engineering.skill',
-  'Flutter app hardening': 'flutter-app-hardening-reverse-engineering.skill',
-  'Flutter Firebase Analytics': 'flutter-firebase-analytics.skill',
-  'Flutter Sentry': 'flutter-sentry-engineering.skill',
-  'Flutter production build & release': 'flutter-production-build-release.skill',
-  'Test before deploy': 'test-before-deploy.skill',
-  'Flutter lints & static analysis': 'flutter-lints-static-analysis-engineering.skill',
-  'Flutter expert tips': 'flutter-expert-tips.skill',
+  'Flutter production engineering': 'flutter-production-engineering',
+  'Senior Flutter architecture': 'senior-flutter-architecture',
+  'Design patterns': 'shvets-design-patterns',
+  'Dart & Flutter Equatable': 'dart-flutter-equatable-engineering',
+  Freezed: 'freezed-production-engineering',
+  'Flutter multi-environment': 'flutter-multi-environment',
+  'Flutter design systems': 'flutter-design-system-from-design-md',
+  'Flutter animations': 'flutter-animations-production-engineering',
+  'Rive Flutter': 'rive-flutter',
+  'Lottie for Flutter': 'lottie-flutter',
+  'Flutter SVG': 'flutter-svg-engineering',
+  'Flutter image performance': 'flutter-image-performance',
+  'Flutter UI performance': 'flutter-ui-performance-engineering',
+  'Flutter jank optimization': 'flutter-performance-jank-optimization',
+  'Flutter concurrency': 'flutter-concurrency-memory-performance',
+  'Flutter memory leaks': 'flutter-memory-leak-engineering',
+  'Flutter Dio': 'flutter-dio-engineering',
+  'Flutter go_router': 'flutter-go-router-engineering',
+  'Flutter Supabase': 'flutter-supabase-engineering',
+  'Flutter Drift': 'flutter-drift-persistence-engineering',
+  hydrated_bloc: 'hydrated-bloc',
+  'document_scan for Flutter': 'document-scan-flutter',
+  'Flutter secure storage': 'flutter-secure-storage-security-engineering',
+  'Flutter application security': 'flutter-application-security-engineering',
+  'Flutter app hardening': 'flutter-app-hardening-reverse-engineering',
+  'Flutter Firebase Analytics': 'flutter-firebase-analytics',
+  'Flutter Sentry': 'flutter-sentry-engineering',
+  'Flutter production build & release': 'flutter-production-build-release',
+  'Test before deploy': 'test-before-deploy',
+  'Flutter lints & static analysis': 'flutter-lints-static-analysis-engineering',
+  'Flutter expert tips': 'flutter-expert-tips',
 };
 
 const selectedSkills = new Set();
@@ -111,18 +111,27 @@ function updateSelectionBar() {
 }
 
 function buildInstallCommands() {
-  const files = [...selectedSkills].map(name => skillFiles[name]);
-  if (activeCommand === 'npx') return 'npx degit ariaramin/flutter-skills/skills ./selected-skills';
-  if (activeCommand === 'git') return ['mkdir -p ./selected-skills', 'git clone --filter=blob:none --sparse https://github.com/ariaramin/flutter-skills.git ./flutter-skills-install', `git -C ./flutter-skills-install sparse-checkout set --no-cone ${files.map(file => `skills/${file}`).join(' ')}`, 'cp ./flutter-skills-install/skills/*.skill ./selected-skills/'].join('\n');
-  const downloader = activeCommand === 'wget' ? file => `wget -q "${rawSkillsBase}/${file}" -O "./selected-skills/${file}"` : file => `curl -fL "${rawSkillsBase}/${file}" -o "./selected-skills/${file}"`;
-  return ['mkdir -p ./selected-skills', ...files.map(downloader)].join('\n');
+  const dirs = [...selectedSkills].map(name => skillFiles[name]);
+  if (activeCommand === 'npx') return `npx degit ${repository}/skills ./selected-skills`;
+  if (activeCommand === 'git') {
+    return [
+      'mkdir -p ./selected-skills',
+      `git clone --filter=blob:none --sparse https://github.com/${repository}.git ./flutter-skills-install`,
+      `git -C ./flutter-skills-install sparse-checkout set --no-cone ${dirs.map(dir => `skills/${dir}`).join(' ')}`,
+      ...dirs.map(dir => `cp -R ./flutter-skills-install/skills/${dir} ./selected-skills/`),
+    ].join('\n');
+  }
+  const url = `https://codeload.github.com/${repository}/tar.gz/refs/heads/main`;
+  const paths = dirs.map(dir => `flutter-skills-main/skills/${dir}`).join(' ');
+  const fetch = activeCommand === 'wget' ? `wget -qO- "${url}"` : `curl -fL "${url}"`;
+  return `mkdir -p ./selected-skills\n${fetch} | tar -xz -C ./selected-skills --strip-components=2 ${paths}`;
 }
 
 function renderCommand() {
   commandOutput.textContent = buildInstallCommands();
   commandNote.innerHTML = activeCommand === 'npx'
-    ? 'The <code>npx</code> command fetches the complete <code>skills/</code> folder. Use <code>curl</code>, <code>wget</code>, or <code>git</code> when you need only the selected archives.'
-    : 'These commands download the selected <code>.skill</code> archives into <code>./selected-skills</code>. Import those archives into your compatible AI coding tool.';
+    ? 'The <code>npx</code> command fetches the complete <code>skills/</code> folder. Use <code>curl</code>, <code>wget</code>, or <code>git</code> when you need only the selected skill folders.'
+    : 'These commands download the selected skill folders into <code>./selected-skills</code>. Each folder contains <code>SKILL.md</code>. Copy a folder into your AI coding tool’s skills directory.';
 }
 
 grid.addEventListener('click', event => {

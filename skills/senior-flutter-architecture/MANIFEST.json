@@ -1,0 +1,142 @@
+[
+  {
+    "path": "README.md",
+    "sha256": "34301040bdab2e3180205b019f48e049614fd2e14d46c7b57e5e163209f41d5d",
+    "bytes": 1625
+  },
+  {
+    "path": "SKILL.md",
+    "sha256": "89aa45359cd6a20f1e9629d8b77b22b7e70b742ad9faf3a9ad4a8b71d6b0a34f",
+    "bytes": 19757
+  },
+  {
+    "path": "examples/architecture-review.md",
+    "sha256": "84744c7437b71e8aa68b992b3767e9a2a3779179a3f8ad1fdccc89ce1149c7f8",
+    "bytes": 1868
+  },
+  {
+    "path": "examples/feature-design.md",
+    "sha256": "cc8b8ee89341a7b7e30c1fa398adb4e3e6f9f582a1beade1996b228df617191c",
+    "bytes": 2501
+  },
+  {
+    "path": "examples/plugin-sdk-design.md",
+    "sha256": "6fa620e2459e9d018bdd5fe2bba4e06bdc347ab70e32a3fd78caddeefdac88b6",
+    "bytes": 1694
+  },
+  {
+    "path": "examples/refactoring-example.md",
+    "sha256": "bacae74addfc6dcfd13a7f768143801126d6801c19c937dd60fb6f53fcc00b48",
+    "bytes": 1916
+  },
+  {
+    "path": "references/anti-patterns.md",
+    "sha256": "99d5aa2ec085f6640aea7eaef5c7d9faa3cc4c5f4aaa7d9f173e2e6228b50f77",
+    "bytes": 5031
+  },
+  {
+    "path": "references/architecture-review-checklist.md",
+    "sha256": "8d7c7fc40eb74d4b657af2e9a144ada6cf2eb581de48c73af9cb57c4328017b5",
+    "bytes": 3167
+  },
+  {
+    "path": "references/async-concurrency-lifecycle.md",
+    "sha256": "26b345195a97ac0a5a5389c979c7281fd392fcad548412c01376c3888f2138eb",
+    "bytes": 3397
+  },
+  {
+    "path": "references/base-mobile-architecture-mapping.md",
+    "sha256": "081784b8cb19c267e6983f28168435f4f3a661842dc215d7f18f5985371dce24",
+    "bytes": 3100
+  },
+  {
+    "path": "references/current-flutter-guidance.md",
+    "sha256": "5020e7cabf1c2eecb50728e5c351694e7ccf323a8f2d0f55c3bd70f28d29f467",
+    "bytes": 1540
+  },
+  {
+    "path": "references/dart-code-quality.md",
+    "sha256": "14f0653e008afbfc045bf03c5cfe72e4ede51f1b8dcca472784bec7c2f5e4eb1",
+    "bytes": 2933
+  },
+  {
+    "path": "references/data-layer-offline-sync.md",
+    "sha256": "c21300408d0bddfa678411a1ca8a0fad54df883cad763d1b33105a9b72bc7be0",
+    "bytes": 3779
+  },
+  {
+    "path": "references/decision-frameworks.md",
+    "sha256": "5d48bb4aef5da8ba324c7ccc7cd1bc5ce552721194f79d948877c540d3cfebda",
+    "bytes": 4323
+  },
+  {
+    "path": "references/dependency-injection.md",
+    "sha256": "165e71818ab85db1c874f7583c42c4c9213a6424515ceaaba20cd1084bcf6c09",
+    "bytes": 2325
+  },
+  {
+    "path": "references/ecosystem-adaptation.md",
+    "sha256": "013fbf49c22080b77b83f1265d50ef016e358f6d2675db985e800879ab59f3f5",
+    "bytes": 2461
+  },
+  {
+    "path": "references/error-handling-observability.md",
+    "sha256": "1f238cb3f1a60168a34e1395b41db4f66736aad432ee4d7457d3d64f52c7e1fd",
+    "bytes": 2010
+  },
+  {
+    "path": "references/flutter-architecture-principles.md",
+    "sha256": "8807170b890353a47939d23d27aed8310cb11b461d99cd9726cbc68a2c23459f",
+    "bytes": 4453
+  },
+  {
+    "path": "references/migration-refactoring.md",
+    "sha256": "d984e0c317d61b13b2aba3126601ee6cefdefa49ea9803a909ad2c474b1d1124",
+    "bytes": 2249
+  },
+  {
+    "path": "references/navigation-routing.md",
+    "sha256": "7c161fbdb38e8e67a054a466ee84273fe86bcbe9b167121910e6e91e70b44ded",
+    "bytes": 2405
+  },
+  {
+    "path": "references/performance.md",
+    "sha256": "c58ba84a1b7af4e1742f39ece0a14721c26ee896ab80268f5e94380e796834b1",
+    "bytes": 2861
+  },
+  {
+    "path": "references/platform-integration-plugins.md",
+    "sha256": "be5bb05254b532ec4f04361106d07329e9caa00d04436b8339af539e40ef2a70",
+    "bytes": 3483
+  },
+  {
+    "path": "references/project-structure-modularization.md",
+    "sha256": "569a26c8669a19203147e437e5fd9b85198a3308edd946f6cc3c17ac5a902214",
+    "bytes": 3418
+  },
+  {
+    "path": "references/source-manifest.json",
+    "sha256": "96df106b061ee5a3d65887f5058f55800ca62fed3f04f4741cab799580f05305",
+    "bytes": 982
+  },
+  {
+    "path": "references/source-traceability.md",
+    "sha256": "9ef833fe1c85efd29ff31bda2d40126abfc9627283f389f0dc508d120e683bfc",
+    "bytes": 3810
+  },
+  {
+    "path": "references/state-management.md",
+    "sha256": "3a46c920d4211317fbab81601e47d95d4961734daf7cbac786e87ebe05dddbdb",
+    "bytes": 4497
+  },
+  {
+    "path": "references/testing.md",
+    "sha256": "beb79445e4dc0d8224402cd37782aff2a32a2ecebf8ba90f4013dada26b5ba45",
+    "bytes": 3051
+  },
+  {
+    "path": "references/widget-ui-architecture.md",
+    "sha256": "454b89eccfd769e99a2584e2a9b4738f1d260d7df549e49d2a8d75913f7c04aa",
+    "bytes": 4022
+  }
+]

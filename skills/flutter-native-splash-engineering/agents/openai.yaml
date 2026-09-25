@@ -1,0 +1,4 @@
+interface:
+  display_name: "Flutter Native Splash Engineering"
+  short_description: "Build polished production Flutter launch screens"
+  default_prompt: "Use $flutter-native-splash-engineering to review and improve this Flutter native splash implementation."

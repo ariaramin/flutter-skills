@@ -1,0 +1,4 @@
+interface:
+  display_name: "Flutter Firebase Core Engineering"
+  short_description: "Build reliable Flutter Firebase foundations"
+  default_prompt: "Use $flutter-firebase-core-engineering to review and improve this Flutter Firebase Core setup."

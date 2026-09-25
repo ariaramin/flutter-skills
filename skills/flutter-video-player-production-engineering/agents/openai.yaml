@@ -1,0 +1,4 @@
+interface:
+  display_name: "Flutter video_player"
+  short_description: "Build reliable cross-platform video playback"
+  default_prompt: "Use $flutter-video-player-production-engineering to implement, review, or optimize a production video_player workflow."

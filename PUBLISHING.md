@@ -12,7 +12,7 @@ If the licensing goals change, obtain legal guidance before replacing it; a publ
 
 ### 2. Review the published files 🔍
 
-Confirm that every archive contains only material intended for public distribution. In particular, remove or redact:
+Confirm that every skill folder contains only material intended for public distribution. In particular, remove or redact:
 
 - API keys, tokens, passwords, certificates, and private URLs.
 - Customer, employer, or personal data.
@@ -21,9 +21,8 @@ Confirm that every archive contains only material intended for public distributi
 Validate all packages locally:
 
 ```sh
-for skill in skills/*.skill; do
-  unzip -t "$skill"
-  unzip -Z1 "$skill" | rg '^[^/]+/SKILL\.md$'
+for manifest in skills/*/SKILL.md; do
+  test -f "$manifest"
 done
 ```
 
@@ -45,8 +44,8 @@ git remote add origin https://github.com/YOUR-ACCOUNT/flutter-ai-skills.git
 
 - Add a concise description, for example: **“Production-focused AI skills for Flutter and Dart development.”**
 - Add relevant topics: `flutter`, `dart`, `ai`, `skills`, and `developer-tools`.
-- Verify that the README renders correctly and that every skill link opens its archive.
-- Enable branch protection for `main` and require the **Validate skill archives** workflow before merging changes.
+- Verify that the README renders correctly and that every skill link opens its `SKILL.md`.
+- Enable branch protection for `main` and require the **Validate skills** workflow before merging changes.
 
 ## Create the first release
 
@@ -56,15 +55,15 @@ Use a version tag such as `v1.0.0` for the first public release. Create the rele
 - The intended AI tools or environments, if known.
 - Any important compatibility baselines or limitations.
 
-Attach the `.skill` archives as release assets if you want users to download packages from one place. The files remain available from the repository either way.
+The skill folders stay in the repository. A release can point readers at those folders.
 
 ## Release workflow
 
 For every update:
 
-1. Validate the archives locally and confirm the GitHub Action passes. ✅
-2. Update `README.md` when the catalog, package names, or usage guidance changes.
-3. Review every changed archive for private or sensitive information.
+1. Validate the skill folders locally and confirm the GitHub Action passes. ✅
+2. Update `README.md` when the catalog, folder names, or usage guidance changes.
+3. Review every changed skill folder for private or sensitive information.
 4. Tag the release and publish clear release notes.
 
 Use semantic versioning for repository releases:
@@ -75,4 +74,4 @@ Use semantic versioning for repository releases:
 
 ## Ready-to-publish summary
 
-The repository documentation, community files, social preview, and archive-validation workflow are ready. Set the GitHub metadata, enable the recommended settings, then publish the first tagged release. 🎉
+The repository documentation, community files, social preview, and skill-validation workflow are ready. Set the GitHub metadata, enable the recommended settings, then publish the first tagged release. 🎉

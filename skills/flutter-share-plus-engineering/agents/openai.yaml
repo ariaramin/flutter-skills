@@ -1,0 +1,4 @@
+interface:
+  display_name: "Flutter share_plus Engineering"
+  short_description: "Build reliable cross-platform Flutter sharing"
+  default_prompt: "Use $flutter-share-plus-engineering to review and improve this Flutter sharing implementation."

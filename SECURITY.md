@@ -4,7 +4,7 @@
 
 Please do not disclose security vulnerabilities in a public issue. Use GitHub’s private vulnerability reporting feature when it is enabled for this repository.
 
-Include a clear description, affected skill archive and version, reproduction steps, potential impact, and any proposed mitigation. Avoid including real secrets or personal data in the report.
+Include a clear description, affected skill folder and version, reproduction steps, potential impact, and any proposed mitigation. Avoid including real secrets or personal data in the report.
 
 ## Scope
 

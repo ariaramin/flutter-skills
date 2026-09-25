@@ -1,0 +1,4 @@
+interface:
+  display_name: "Flutter Sentry Engineering"
+  short_description: "Build production-ready Flutter observability"
+  default_prompt: "Use $flutter-sentry-engineering to review and improve this Flutter Sentry integration."

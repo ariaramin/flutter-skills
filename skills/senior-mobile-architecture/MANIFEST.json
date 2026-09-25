@@ -1,0 +1,127 @@
+[
+  {
+    "path": "README.md",
+    "sha256": "996f89a8473d2e97d260e29dca8d9f2c7a697b151ac459e20f97033aed5b188b",
+    "bytes": 3582
+  },
+  {
+    "path": "SKILL.md",
+    "sha256": "024a64dc3488dad42fc9c414a6927a92405888f4719fbe7e3c0dfce1993c28c4",
+    "bytes": 14194
+  },
+  {
+    "path": "examples/architecture-review.md",
+    "sha256": "ca71329da8e9684df622cdee1db360be67ef65577cddc34e1633be71400e97a1",
+    "bytes": 2851
+  },
+  {
+    "path": "examples/feature-design.md",
+    "sha256": "68c84412a1be73a1fe32936344789466b9a6bc00bc367992d46b3231f621fd32",
+    "bytes": 2422
+  },
+  {
+    "path": "examples/refactoring-example.md",
+    "sha256": "539d30b7c369b3265630ab292e98a4d8ae9db3fcd2640a0effeedfb1c7bb13c0",
+    "bytes": 2230
+  },
+  {
+    "path": "references/anti-patterns.md",
+    "sha256": "93a1f93a810d9b2aa0866d27c0847bc988c87cbf0600ebdf9d955cec5a384392",
+    "bytes": 4867
+  },
+  {
+    "path": "references/architecture-patterns.md",
+    "sha256": "2632e9b04f109b6eceb029ccd30512386e182ecaf0e280d12f87d96210be7e81",
+    "bytes": 3925
+  },
+  {
+    "path": "references/architecture-principles.md",
+    "sha256": "df267b140dc8f20b5a1af046a2f74d28e78de9e8ddccee130f7a6b5052d5c767",
+    "bytes": 6511
+  },
+  {
+    "path": "references/concurrency.md",
+    "sha256": "273d369d3dc18f611373bd1bf2c3998e74d6ef535c511e704a9991687b03210f",
+    "bytes": 2133
+  },
+  {
+    "path": "references/coverage-report.md",
+    "sha256": "36dc7d116834e31e17e9c5495ce4af476ea3c40d4596b8a0ca79c6b54e0b8432",
+    "bytes": 3174
+  },
+  {
+    "path": "references/curriculum-map.md",
+    "sha256": "7afffea122108b97b6e0fef43603df681a01f3a4627ed0811d9e3cbcf72d56ba",
+    "bytes": 6858
+  },
+  {
+    "path": "references/data-layer.md",
+    "sha256": "2c047d255e6b17064cd2704abc3f615e9be5ba5d2860b40469069162cc850561",
+    "bytes": 3167
+  },
+  {
+    "path": "references/decision-frameworks.md",
+    "sha256": "3c222410f4d927f9fb0d776dca52769767ee6954ede0d515f77b8593fea24cfa",
+    "bytes": 5780
+  },
+  {
+    "path": "references/future-transcript-ingestion.md",
+    "sha256": "425197a9582085746beff9faa436cd4fa2e5f1ad22f8b1bf887491944e65f555",
+    "bytes": 1157
+  },
+  {
+    "path": "references/gap-report.md",
+    "sha256": "0fb9eeece37efe0e43041956d8145f7d61c10f5064ca153393a43af09f039282",
+    "bytes": 2905
+  },
+  {
+    "path": "references/networking-api-design.md",
+    "sha256": "be944d61d9fa97edd51f9b4c2b3201ba05fe90be49b6fedc9beb7612917ca4f1",
+    "bytes": 2867
+  },
+  {
+    "path": "references/performance.md",
+    "sha256": "a6ef09e58d37442b905eddd1eb6fcda5d09c0a5d7c64247972dc716fc5030b48",
+    "bytes": 2023
+  },
+  {
+    "path": "references/security-observability.md",
+    "sha256": "31d7cbd6ff4c324bc866fe2c7a3033ef0c004cb027812f99fbc61561a2d77810",
+    "bytes": 1673
+  },
+  {
+    "path": "references/senior-mobile-mental-model.md",
+    "sha256": "d943109a0e76e343e8b04f8e073a9a53dbd9979998965e6292cfdc8a61aed0ee",
+    "bytes": 2629
+  },
+  {
+    "path": "references/source-manifest.json",
+    "sha256": "1c69efedbd3656f01fa1e350bea2892cfcfc32d9dc1bede11fbae222effb5e7e",
+    "bytes": 1066
+  },
+  {
+    "path": "references/source-traceability.md",
+    "sha256": "97fd0f076e4dc36fb8ef468085b06310cf67e18de29741c7ec38bb05eebbf248",
+    "bytes": 6740
+  },
+  {
+    "path": "references/state-management.md",
+    "sha256": "dd63f5343443e3af8a14321dc8b06c84d450257b58d6ee12e108251dbb074ccc",
+    "bytes": 2688
+  },
+  {
+    "path": "references/supplemental-current-practices.md",
+    "sha256": "e486757f5a59952150ccd54e8ab2fe2615f790bcdfc809888e03b9342340b308",
+    "bytes": 1712
+  },
+  {
+    "path": "references/testing.md",
+    "sha256": "bcb8faf391e655c2e51c20cb84036a3bbe77782c00ba45464a8a6528f0d155e5",
+    "bytes": 1815
+  },
+  {
+    "path": "references/video-knowledge-index.md",
+    "sha256": "f56e0a7a2b1cf5f878acabb001ba54d1da5fdbd1b9606d48e79fea6d5fd3e916",
+    "bytes": 8029
+  }
+]

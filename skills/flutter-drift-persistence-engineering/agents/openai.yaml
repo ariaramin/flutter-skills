@@ -1,0 +1,4 @@
+interface:
+  display_name: "Flutter Drift"
+  short_description: "Engineer production Drift persistence layers"
+  default_prompt: "Use $flutter-drift-persistence-engineering to design, review, or optimize a production Drift persistence layer."

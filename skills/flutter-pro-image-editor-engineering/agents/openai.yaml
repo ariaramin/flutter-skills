@@ -1,0 +1,4 @@
+interface:
+  display_name: "Flutter pro_image_editor"
+  short_description: "Build reliable Flutter image editing flows"
+  default_prompt: "Use $flutter-pro-image-editor-engineering to implement or review a production pro_image_editor workflow."

@@ -1,0 +1,42 @@
+[
+  {
+    "path": "README.md",
+    "sha256": "31d887af75be2bb3f4e7ac548264d16c6a6bb60e780556e018ce7ab7b524bc9c",
+    "bytes": 1111
+  },
+  {
+    "path": "SKILL.md",
+    "sha256": "3a89303d311695d7fe3e37e9c3d8f963165de736069fe25793e8513094797002",
+    "bytes": 18485
+  },
+  {
+    "path": "examples/feature-release-plan.md",
+    "sha256": "fbb32203f8bbc6accadb1ddab56f900c39c38ee3459a2efa4433259c181b17e2",
+    "bytes": 3152
+  },
+  {
+    "path": "references/34-test-catalog.md",
+    "sha256": "f9f7814269b9953db7564d5ea6f5897ce18826c06ecc9a31ce67145aab40b56c",
+    "bytes": 4769
+  },
+  {
+    "path": "references/coverage-and-gaps.md",
+    "sha256": "c148b4e8f293b8ac3d17bfdf0c3554ff497568e64ab07dcb9c4b41390fbd8421",
+    "bytes": 2047
+  },
+  {
+    "path": "references/release-gate-checklist.md",
+    "sha256": "fbee15d94d9a24367ec98490e6f6998be2f984d55f2c6d6e6832927a4533e5b5",
+    "bytes": 3652
+  },
+  {
+    "path": "references/source-traceability.md",
+    "sha256": "122c0d4abf4728f44bcd7323b4ab1dd3373ef67cebb7d693ab56d6584129da6c",
+    "bytes": 2393
+  },
+  {
+    "path": "references/test-selection-framework.md",
+    "sha256": "3feb705ed297f352401b77b6fdac604aa8970d29e6f78c949aefca4e9645d335",
+    "bytes": 5668
+  }
+]

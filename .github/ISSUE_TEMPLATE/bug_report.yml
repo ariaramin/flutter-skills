@@ -9,9 +9,9 @@ body:
   - type: input
     id: skill
     attributes:
-      label: Skill archive
-      description: Which `.skill` file is affected?
-      placeholder: flutter-dio-engineering.skill
+      label: Skill
+      description: Which skill folder is affected?
+      placeholder: flutter-dio-engineering
     validations:
       required: true
   - type: textarea

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Flutter Confetti Engineering"
+  short_description: "Build smooth accessible Flutter celebrations"
+  default_prompt: "Use $flutter-confetti-engineering to review and improve this Flutter confetti effect."
