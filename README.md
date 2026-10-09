@@ -6,7 +6,7 @@ A curated collection of production-focused AI skills for Flutter and Dart develo
 
 ## What’s included ✨
 
-This repository contains **66 skills**. Each skill is a folder:
+This repository contains **67 skills**. Each skill is a folder:
 
 - `SKILL.md` — the skill’s scope, trigger conditions, and operating guidance.
 - `references/` — focused material for version-sensitive, platform-specific, or advanced work where applicable.
@@ -51,6 +51,7 @@ Use this skill for framework-level motion engineering. The separate [Flutter ani
 
 ### UI and user experience
 
+- [Figma to Flutter](skills/figma-to-flutter-expert/SKILL.md) — pixel-accurate, high-performance Flutter conversion of Figma designs, Auto Layout, tokens, and responsive multi-platform UI.
 - [HTML to Flutter](skills/html-to-flutter/SKILL.md) — production Flutter ports of HTML/CSS/JavaScript interfaces.
 - [React to Flutter](skills/react-to-flutter/SKILL.md) — idiomatic, behavior-preserving React web migrations to Flutter.
 - [Flutter animations](skills/flutter-animations-production-engineering/SKILL.md) — Material motion, transitions, accessibility, and animation performance.

@@ -6,6 +6,7 @@ const skills = [
   { name: 'Freezed', group: 'Foundations', icon: '◇', description: 'Immutable models, unions, JSON serialization, and code generation.' },
   { name: 'Flutter multi-environment', group: 'Foundations', icon: '⌂', description: 'Development, staging, production flavors, and configuration.' },
   { name: 'Flutter design systems', group: 'UI & UX', icon: '▦', description: 'Tokens, components, states, and design.md to Flutter workflows.', featured: true },
+  { name: 'Figma to Flutter', group: 'UI & UX', icon: '❖', description: 'Pixel-accurate Flutter conversion of Figma designs, Auto Layout, tokens, and responsive UI.' },
   { name: 'Flutter animations', group: 'UI & UX', icon: '◌', description: 'Accessible motion, transitions, and animation performance.' },
   { name: 'Rive Flutter', group: 'UI & UX', icon: '◈', description: 'C++ runtime integration, state machines, and multi-platform rendering.' },
   { name: 'Lottie for Flutter', group: 'UI & UX', icon: '◎', description: 'Pure Dart vector animations, composition caching, delegates, and markers.' },
@@ -34,7 +35,7 @@ const skills = [
 
 const categories = [
   ['Foundations', '⌘', 'Architecture, Dart, state, and app structure.', '05'],
-  ['UI & UX', '◌', 'Components, motion, images, and design systems.', '06'],
+  ['UI & UX', '◌', 'Components, motion, images, and design systems.', '07'],
   ['Platform & data', '⇄', 'Networking, navigation, storage, and services.', '05'],
   ['Production', '⤴', 'Performance, security, testing, and delivery.', '13'],
 ];
@@ -48,6 +49,7 @@ const skillFiles = {
   Freezed: 'freezed-production-engineering',
   'Flutter multi-environment': 'flutter-multi-environment',
   'Flutter design systems': 'flutter-design-system-from-design-md',
+  'Figma to Flutter': 'figma-to-flutter-expert',
   'Flutter animations': 'flutter-animations-production-engineering',
   'Rive Flutter': 'rive-flutter',
   'Lottie for Flutter': 'lottie-flutter',
