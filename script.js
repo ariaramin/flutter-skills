@@ -12,6 +12,7 @@ const skills = [
   { name: 'Lottie for Flutter', group: 'UI & UX', icon: '◎', description: 'Pure Dart vector animations, composition caching, delegates, and markers.' },
   { name: 'Flutter SVG', group: 'UI & UX', icon: '✦', description: 'Rendering, theming, caching, performance, and SVG security.' },
   { name: 'Flutter image performance', group: 'UI & UX', icon: '▧', description: 'Image loading, decoding, caching, and memory use.' },
+  { name: 'document_camera_frame', group: 'UI & UX', icon: '◱', description: 'Framed camera, auto-capture alignment, on-device OCR, and multi-page export.' },
   { name: 'Flutter UI performance', group: 'Performance', icon: '⌁', description: 'Frame-budget analysis, rebuild, layout, paint, and raster work.', featured: true },
   { name: 'Flutter jank optimization', group: 'Performance', icon: '↯', description: 'Profiling and fixing dropped frames, slow scrolling, and latency.' },
   { name: 'Flutter concurrency', group: 'Performance', icon: '⇄', description: 'Isolates, async workflows, lifecycle management, and efficiency.' },
@@ -22,6 +23,7 @@ const skills = [
   { name: 'Flutter Drift', group: 'Platform & data', icon: '▤', description: 'Relational persistence, migrations, and reactive SQLite queries.' },
   { name: 'hydrated_bloc', group: 'Platform & data', icon: '▣', description: 'Persist and restore Bloc/Cubit state across restarts with safe schemas and keys.' },
   { name: 'document_scan for Flutter', group: 'Platform & data', icon: '▣', description: 'Document corners, perspective correction, live frames, and scan testing.' },
+  { name: 'flutter_doc_scanner', group: 'Platform & data', icon: '▤', description: 'Native ML Kit and VisionKit document scanning, images, and PDF compilation.' },
   { name: 'Flutter secure storage', group: 'Security', icon: '◇', description: 'Protected credentials and platform key stores.' },
   { name: 'Flutter application security', group: 'Security', icon: '⬡', description: 'End-to-end application security reviews and remediation.' },
   { name: 'Flutter app hardening', group: 'Security', icon: '◈', description: 'Tamper protection, reverse-engineering resistance, and releases.' },
@@ -35,8 +37,8 @@ const skills = [
 
 const categories = [
   ['Foundations', '⌘', 'Architecture, Dart, state, and app structure.', '05'],
-  ['UI & UX', '◌', 'Components, motion, images, and design systems.', '07'],
-  ['Platform & data', '⇄', 'Networking, navigation, storage, and services.', '05'],
+  ['UI & UX', '◌', 'Components, motion, images, and design systems.', '08'],
+  ['Platform & data', '⇄', 'Networking, navigation, storage, and services.', '06'],
   ['Production', '⤴', 'Performance, security, testing, and delivery.', '13'],
 ];
 
@@ -65,6 +67,8 @@ const skillFiles = {
   'Flutter Drift': 'flutter-drift-persistence-engineering',
   hydrated_bloc: 'hydrated-bloc',
   'document_scan for Flutter': 'document-scan-flutter',
+  document_camera_frame: 'document-camera-frame',
+  flutter_doc_scanner: 'flutter-doc-scanner',
   'Flutter secure storage': 'flutter-secure-storage-security-engineering',
   'Flutter application security': 'flutter-application-security-engineering',
   'Flutter app hardening': 'flutter-app-hardening-reverse-engineering',

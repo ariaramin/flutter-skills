@@ -6,7 +6,7 @@ A curated collection of production-focused AI skills for Flutter and Dart develo
 
 ## What’s included ✨
 
-This repository contains **67 skills**. Each skill is a folder:
+This repository contains **69 skills**. Each skill is a folder:
 
 - `SKILL.md` — the skill’s scope, trigger conditions, and operating guidance.
 - `references/` — focused material for version-sensitive, platform-specific, or advanced work where applicable.
@@ -63,6 +63,8 @@ Use this skill for framework-level motion engineering. The separate [Flutter ani
 - [Flutter image performance](skills/flutter-image-performance/SKILL.md) — image loading, decoding, caching, rendering, and memory use.
 - [Flutter image_picker](skills/flutter-image-picker-production-engineering/SKILL.md) — photo/video acquisition, lost-data recovery, platform behavior, and media safety.
 - [document_scan for Flutter](skills/document-scan-flutter/SKILL.md) — headless document detection, perspective correction, live camera frames, and scan testing on Android and iOS.
+- [document_camera_frame](skills/document-camera-frame/SKILL.md) — custom framed camera, auto-capture alignment, on-device OCR, multi-page PDF/image export, and native document scanning.
+- [flutter_doc_scanner](skills/flutter-doc-scanner/SKILL.md) — native ML Kit and VisionKit document scanning, multi-page image capture, and PDF compilation on Android and iOS.
 - [Flutter pro_image_editor](skills/flutter-pro-image-editor-engineering/SKILL.md) — production image editing, state persistence, export, privacy, and large-image performance.
 - [Flutter video_player](skills/flutter-video-player-production-engineering/SKILL.md) — cross-platform playback, controller lifecycle, streaming delivery, codecs, and decoder performance.
 - [Flutter CamerAwesome](skills/camerawesome-flutter/SKILL.md) — production camera preview, capture modes, ML Kit image analysis, orientation controls, and CameraX/AVFoundation performance.
