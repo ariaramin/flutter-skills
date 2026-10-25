@@ -1,227 +1,58 @@
-# Architecture, Networking, and Dart Engineering Playbook
+# Architecture, Dart, and data decisions
 
-This guide covers layered architecture, network transport, state orchestration, offline data synchronization, and idiomatic Dart engineering standards for production Flutter systems.
+## Language and API contracts
 
----
+Check package language version and installed SDK before adopting syntax. Records, patterns, and most class modifiers require Dart 3; extension types require Dart 3.3; non-binding wildcard variables require Dart 3.7. Verify later features independently rather than copying latest documentation into an older project.
 
-## 1. Layered Application Architecture
+| Construct | Choose when | Guardrail and check |
+| --- | --- | --- |
+| Inference and generics | Types are evident or a container/algorithm needs a reusable contract. | Type empty collections deliberately; keep public boundaries clear. `dynamic` disables useful static checks. `Object?` is appropriate for unknown values before narrowing. |
+| Nullability, `!`, `late` | Absence is meaningful, or a lifecycle invariant proves initialization. | Prefer promotion/pattern checks; test missing fields and access ordering. A cast/assertion is not input validation. |
+| Records and destructuring | A small positional/named result has structural meaning without a domain identity. | Use a named class for invariants, behavior, documentation, or evolving public APIs. |
+| Sealed unions and exhaustive switches | A closed set of states benefits from compiler checking. | A default/wildcard arm can hide new cases. A union is unnecessary for a single flag. |
+| `interface`, `base`, `final` | External implementation/inheritance needs a deliberate contract. | Modifiers change consumers' ability to subtype or fake the class; inspect exports/tests. |
+| Extension methods | Cohesive operations belong on an unowned type. | Resolution is static; avoid hidden global state and surprising collisions. |
+| Extension types | A static representation wrapper restricts available operations. | Runtime representation is unchanged; this is not runtime validation or a security boundary. |
+| Mixins / inheritance / composition | A shared capability, substitutable subtype, or owned collaborator respectively expresses the relationship. | Prefer composition when lifecycle or behavior varies independently; avoid inheritance solely to reuse a method. |
+| Equality and collections | Value semantics matter for state, maps, sets, or deduplication. | Equal values need equal hashes. Do not mutate equality fields in keys; `final List` does not freeze contents. |
 
-Production Flutter systems benefit from clear layer boundaries without introducing speculative boilerplate.
+Dart generics are covariant with runtime checks; widening a `List<int>` to `List<num>` does not allow storing a double safely. Overridden method parameters generally accept the same type or a supertype. Use `covariant` only for an intentional runtime-checked narrowing, not to silence an incompatible contract. Do not assume experimental variance syntax is stable.
 
-```
-┌─────────────────────────────────────────────────────────┐
-│                    UI / Presentation Layer              │
-│  - Widgets (StatelessWidget / StatefulWidget)           │
-│  - Presentation state formatting & interaction capture  │
-└────────────────────────────┬────────────────────────────┘
-                             │ Dispatches user intents / commands
-                             ▼
-┌─────────────────────────────────────────────────────────┐
-│               Feature Controller / View Model           │
-│  - Orchestrates feature workflows                       │
-│  - Manages loading, error, and presentation states      │
-│  - Emits immutable view state snapshots                 │
-└────────────────────────────┬────────────────────────────┘
-                             │ Calls repository interfaces
-                             ▼
-┌─────────────────────────────────────────────────────────┐
-│                   Domain Layer (Optional)               │
-│  - Pure business entities & validation rules           │
-│  - Use cases (introduced only when rules are shared)    │
-└────────────────────────────┬────────────────────────────┘
-                             │
-                             ▼
-┌─────────────────────────────────────────────────────────┐
-│                     Repository Layer                    │
-│  - Application-facing data API                          │
-│  - Coordinates persistence, memory caches & network     │
-│  - Authoritative Single Source of Truth policy          │
-│  - Maps external DTOs into domain models                │
-└────────────────────────────┬────────────────────────────┘
-                             │ Calls low-level data clients
-                             ▼
-┌─────────────────────────────────────────────────────────┐
-│                 Data Source / Service Layer             │
-│  - Raw HTTP clients (Dio, http)                         │
-│  - Local databases (Drift, Hive, Isar, SharedPreferences)│
-│  - Platform channels, Secure Storage, Sensor plugins    │
-└─────────────────────────────────────────────────────────┘
-```
+Keep imports within public package boundaries; do not import another package's `src/`. Match the project's lint-supported import style. Document units, nullability, thrown failures, ownership, and compatibility of public APIs. Avoid expensive/I/O getters that appear to be cheap property reads.
 
-### Layer Responsibilities
-1. **UI / Presentation**:
-   - Strictly renders state and captures user gestures.
-   - Never executes direct HTTP requests, raw database SQL, or complex data transformations.
-2. **Feature Controller / View Model**:
-   - Manages asynchronous operation lifecycles, error reporting, and state emissions.
-   - Keeps presentation state snapshots immutable.
-3. **Domain Layer (Optional)**:
-   - Contains pure business logic, invariants, and calculations.
-   - Do not create empty forwarding "pass-through" use cases that do nothing except call `repository.getFoo()`. Introduce a domain use case only when non-trivial orchestration or reusable domain algorithms exist.
-4. **Repository Layer**:
-   - Acts as the boundary for data policies (e.g., cache-first, network-first, offline fallback).
-   - Shields the application from third-party client API changes.
-5. **Data Source / Service Layer**:
-   - Handles physical transport, serialization/deserialization, headers, and platform plugins.
+## Architecture and state
 
-### Project Modularization and Structure
-- **Feature-first organization**: Group code by feature (e.g., `features/authentication/`, `features/billing/`) rather than layer-first folders (`controllers/`, `views/`, `models/`). This bounds cross-feature coupling and makes ownership clear.
-- **Package boundaries**: Extract distinct Dart/Flutter packages only when there is a concrete reuse boundary, ownership boundary, or independent deployment/CI test boundary (e.g., an internal design system package or shared analytics client). Do not split every folder into a separate package.
+Treat official UI/data separation and repository/MVVM guidance as strong defaults. Existing coherent architectures can satisfy the same concerns. Compare change cost and actual ownership needs before migration.
 
----
+- Views render presentation state and capture events; keep data policy and complex rules in existing owners. Local animation/layout/ephemeral state belongs in widgets.
+- Feature controllers coordinate commands and their loading/error/result states. Data repositories own a source-of-truth policy; services handle external mechanisms.
+- Add a domain/use-case layer for complex reused orchestration, not forwarding methods. Split DTOs/domain models when transport details contaminate business behavior, not automatically for every object.
+- Keep feature-first or layer-first folders consistent. Extract packages for actual reuse/ownership/dependency boundaries; verify exports and monorepo CI consumers.
+- Constructor injection is sufficient for many dependencies. Preserve existing DI registration and scope; a borrower must not dispose a shared service.
+- Retain Navigator for simple stacks; consider Router/current routing library for URL synchronization, nested navigation, or deep-link requirements. Validate route inputs and authorize the underlying operation independently of route guards.
 
-## 2. Networking and Transport Rules
+## Async ownership
 
-### Keep Transport Outside Widgets
-Widgets must never initiate raw HTTP requests or manage transport sockets. Transport belongs in dedicated service and repository classes.
+`async` does not move synchronous work off the current isolate. A plain `Future` has no general cancellation operation. A timeout stops waiting, not necessarily the underlying request or side effect.
 
-### Prevent Duplicate and Build-Triggered Requests
-**Anti-Pattern:**
-```dart
-// Broken: fetchProducts() creates a brand new HTTP request on every single rebuild!
-FutureBuilder<List<Product>>(
-  future: api.fetchProducts(),
-  builder: (context, snapshot) => ...,
-)
-```
+Use transport cancellation when supported, and generation/disposal guards before publishing success, error, or finally state. A mounted widget can still receive an obsolete result: mounted checks alone do not solve request ordering. Replace subscriptions when their source changes; cancel subscriptions/timers and remove owned listeners on teardown.
 
-**Production Standard:**
-- Initiate requests via explicit lifecycle events (`initState`, user tap, pull-to-refresh).
-- Deduplicate in-flight requests in the repository or service so multiple simultaneous calls share the active `Future`.
+See [the runnable latest-search example](examples/latest_search.dart) for guarded success, error, finally and disposal paths with controlled-future assertions. It uses only Dart's standard library; connect publication to the project's existing state mechanism. The guard invalidates results, not the underlying operation; cancel owned transport work separately when supported. Keep this distinction when adapting it to Flutter notifiers or widgets.
 
-### Request Timeouts
-Always configure explicit connection, send, and receive timeouts:
-```dart
-final dio = Dio(
-  BaseOptions(
-    connectTimeout: const Duration(seconds: 10),
-    receiveTimeout: const Duration(seconds: 15),
-    sendTimeout: const Duration(seconds: 10),
-  ),
-);
-```
-Distinguish between timeout failures and server business errors to show actionable user recovery options.
+Use `Future.wait` for independent, suitably bounded operations. It preserves input result order; `eagerError` reports early without canceling other futures. Decide cleanup and partial-failure behavior. Keep dependent writes and ordered migrations sequential; bound high-volume concurrency.
 
-### Cancellation and Stale Response Prevention
-Flutter `Future`s cannot be arbitrarily cancelled from the outside without transport support.
-- Use transport cancellation tokens (e.g., Dio's `CancelToken`) when an owning screen is disposed or an active search query is replaced.
-- **Generation Tokens**: If transport cancellation is unavailable, track request generation tokens in the controller:
-```dart
-class SearchController extends ChangeNotifier {
-  int _activeSearchId = 0;
-  List<Result> results = [];
+Native `Isolate.run` is for substantial computation or blocking work whose transfer/startup cost is acceptable. Keep captured state minimal and sendable. Its result transfer is not always a full copy; `Isolate.run` uses isolate exit to return results. Ordinary asynchronous I/O usually needs no isolate. Dart web does not support isolates; Flutter web `compute` executes on the current event loop. A worker/chunking solution needs its own browser integration and tests.
 
-  Future<void> search(String query) async {
-    final searchId = ++_activeSearchId;
-    final data = await api.query(query);
-    
-    // Ignore stale response if a newer search was initiated
-    if (searchId != _activeSearchId) return;
-    
-    results = data;
-    notifyListeners();
-  }
-}
-```
+## Network, persistence, and security boundaries
 
-### Thoughtful Retry Policies
-- Never blindly retry non-idempotent operations (e.g., credit card charge `POST` requests).
-- Apply retries with **exponential backoff and random jitter** for transient network dropouts and idempotent read queries (`GET`).
-- Stop retrying immediately on client errors (`401 Unauthorized`, `403 Forbidden`, `422 Unprocessable Entity`).
+- Validate external JSON, deep links, imports, and platform responses for shape, ranges, size, identity, and allowed operations. Keep raw values at the boundary until narrowed into trusted types.
+- Configure timeouts using the installed transport's capabilities and user workflow. Preserve meaningful operational errors; redact credentials, personal payloads, and sensitive identifiers in logs.
+- Retry only eligible transient failures with a bounded budget/backoff/jitter. Mutating requests require explicit idempotency semantics; an HTTP timeout does not prove the server did nothing. Do not bypass TLS/certificate validation to fix connectivity.
+- Define pagination/in-flight guards and a stable query identity. Bound expensive caches by scope/capacity with freshness/invalidation policies.
+- Distinguish disposable session caches from user-owned offline documents. On logout, revoke session access and clear appropriate credentials/caches; retain durable content and required decryption material according to product ownership policy. Never delete data or keys merely as cleanup.
+- Use transactions/atomic replacement and tested schema migrations where applicable. Preserve the previous usable data when import, migration, or restore fails. Inspect backup/key-loss behavior before changing encryption or storage.
+- Privileged secrets belong on a server. `.env`, `--dart-define`, assets, minification, and obfuscation do not make distributed values confidential. Public restricted client identifiers differ from server secrets. Platform secure storage protects appropriate local credentials at rest, with target-specific backup/access guarantees; verify the actual plugin/version rather than prescribing one universally.
+- Enforce authorization at the trusted service/data boundary. Review dependency provenance, resolved versions, maintenance, licenses, native permissions, and platform support before adding/upgrading a package. Preserve existing lock/CI policies.
+- Preserve framework and uncaught asynchronous error reporting (`FlutterError.onError`, `PlatformDispatcher.instance.onError`) when applicable. Global reporting does not replace local recovery; redact reports and retain diagnosable stack traces.
 
-### Pagination Backpressure
-- Model pagination states explicitly: `items`, `isLoadingFirstPage`, `isLoadingNextPage`, `hasReachedEnd`, `error`.
-- Apply backpressure: enforce a guard flag preventing request `N+1` while request `N` is active.
-
-### Handling Large JSON Payloads
-- Decoding a 10 MB JSON response using `jsonDecode()` on the UI thread blocks frame rendering for dozens of milliseconds.
-- On native platforms (Android, iOS, macOS, Windows, Linux), offload parsing of proven heavy payloads using `Isolate.run`:
-```dart
-Future<List<Item>> parseLargeJson(String rawJson) {
-  return Isolate.run(() {
-    final dynamic list = jsonDecode(rawJson);
-    return (list as List).map((e) => Item.fromJson(e as Map<String, dynamic>)).toList();
-  });
-}
-```
-- On Web, `Isolate.run` runs on the main browser thread; use chunking or Web Workers for massive browser-side transformations.
-
-### Caching and Offline Synchronization
-- Specify an authoritative single source of truth (e.g., local database is source of truth; network updates write to database; UI observes database reactive streams).
-- Define cache freshness, Time-To-Live (TTL), and clear invalidation policies.
-- Always purge user-specific caches upon authentication logout.
-
----
-
-## 3. Navigation and Deep Linking
-
-### Declarative Routing for Production Apps
-- For apps requiring deep linking, browser URL synchronization, nested routing, or authentication redirection, use declarative routing (`Router` / `go_router`).
-- Do not introduce legacy string-based named routes (`Navigator.pushNamed`) as the architectural foundation for new production apps.
-- Treat deep links as untrusted external user inputs: validate route parameters, missing entity IDs, and authorization guards.
-
-### Handling Android Back Navigation
-- Use `PopScope` to handle form abandonment checks and confirmation dialogs cleanly without breaking Android predictive back gestures.
-
----
-
-## 4. Dart Engineering and Code Quality Rules
-
-Follow current Effective Dart rules and maintain a clean static analysis baseline.
-
-### Null Safety
-- Model absence explicitly with nullable types (`T?`).
-- **Never scatter force unwraps (`!`)** to suppress analyzer warnings. Every `!` is an unhandled runtime crash waiting to happen. Use defensive null checks, `if-case` matching, or default values (`??`).
-- Late initialization (`late`) should only be used when an object's lifecycle guarantees assignment before first access (e.g., `initState`).
-
-### Sound Static Typing
-- Avoid `dynamic` and `Object?` except at low-level interop boundaries.
-- At JSON, platform-channel, and external boundaries, immediately validate and deserialize raw maps into strongly typed immutable domain models. Never pass raw `Map<String, dynamic>` across business layers.
-
-### Immutability and State
-- Mark state models immutable using `final` fields.
-- Use `const` constructors where possible.
-- Avoid modifying collection fields in place; emit new collection instances or copy methods (`copyWith`).
-
-### Dart Pattern Matching and Records
-Use modern Dart 3+ pattern matching and records where they improve clarity:
-- **Records**: Return lightweight, typed multi-value results without creating single-use tuple classes:
-```dart
-(double min, double max) calculateExtents(List<double> values) { ... }
-```
-- **Switch Expressions**: Handle state hierarchies exhaustively:
-```dart
-Widget buildState(ScreenState state) => switch (state) {
-  Initial() => const EmptyView(),
-  Loading() => const LoadingIndicator(),
-  Success(:final items) => ItemList(items: items),
-  Failure(:final message) => ErrorBanner(message: message),
-};
-```
-
-### Sealed Class Hierarchies
-Model state machines and domain variants using `sealed class` hierarchies. The Dart analyzer enforces compile-time exhaustiveness checking, guaranteeing that adding a new state variant forces all handling code to be updated:
-```dart
-sealed class CheckoutState {}
-final class CartReview extends CheckoutState {}
-final class PaymentProcessing extends CheckoutState {}
-final class OrderSuccess extends CheckoutState {
-  final String orderId;
-  OrderSuccess(this.orderId);
-}
-final class OrderFailure extends CheckoutState {
-  final String error;
-  OrderFailure(this.error);
-}
-```
-
-### Exception and Error Discipline
-- Use exceptions for recoverable operational failures (network loss, disk full, invalid response).
-- Catch specific exception types (`on SocketException`, `on FormatException`); never catch bare `catch (e)` and swallow silently.
-- Dart `Error` (e.g., `ArgumentError`, `RangeError`) indicates programmer error or bug, not recoverable operational flow.
-
-### Clean API Design
-- Prefer clear, unambiguous naming over clever abbreviations.
-- Keep public class surfaces small. Expose getters rather than mutable public fields.
-- Avoid getters that perform expensive synchronous computations, network I/O, or allocate large objects on every invocation.
-- Restrict extension methods to cohesive utility logic on unowned types; never build hidden global architectures out of unrelated extensions.
+Sources: Effective Dart, Dart type system/class modifiers/extension types/error handling, `Future.wait`, `Isolate.run`, `compute`, Flutter architecture/navigation/error handling, and obfuscation documentation in [sources](sources.md). Persistence, retry, and security boundary choices above include explicit engineering judgment; verify package contracts for implementation details.

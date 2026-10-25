@@ -1,0 +1,38 @@
+{
+  "skill_name": "flutter-dart-package-engineering",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I have a pure Dart parsing library I want to publish on pub.dev. My teammate says we must restructure it as a federated plugin with a platform interface for future flexibility, pin all dependency versions exactly so builds are reproducible, and ship 1.0.0 right away since the code is stable. No repo or toolchain is available here. Give a concrete plan: what is right and wrong in these three proposals, what the package actually needs before publishing, and which commands would validate it.",
+      "expected_output": "Rejects federated plugin architecture for a pure Dart package (overengineering; plugin structure is for platform-channel implementations).; Rejects exact version pins and explains wide tested ranges plus downgrade testing; notes pubspec.lock is for apps, not libraries.; Defers 1.0.0 as a stability commitment or accepts it with stated criteria; lists LICENSE, a non-template description (60-180 is the pubspec target, not the upload reject), CHANGELOG, README, example, lints, tests, and dart pub publish --dry-run as a client subset that does not prove the server will accept the package; marks commands as unexecuted.",
+      "files": [],
+      "expectations": [
+        "Rejects federated plugin architecture for a pure Dart package (overengineering; plugin structure is for platform-channel implementations).",
+        "Rejects exact version pins and explains wide tested ranges plus downgrade testing; notes pubspec.lock is for apps, not libraries.",
+        "Defers 1.0.0 as a stability commitment or accepts it with stated criteria; lists LICENSE, a non-template description (60-180 is the pubspec target, not the upload reject), CHANGELOG, README, example, lints, tests, and dart pub publish --dry-run as a client subset that does not prove the server will accept the package; marks commands as unexecuted."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Our federated plugin battery_pro has an app-facing package, battery_pro_platform_interface, and endorsed battery_pro_android/ios. We need to add a new method `getHealthReport()` to the platform interface and expose it. Is this a breaking change for third-party implementations? What version bumps are needed where, and how do we keep existing Android/iOS consumers working? Also, a security advisory just hit one of our dependencies.",
+      "expected_output": "Correctly states adding a method to a platform interface is NOT breaking when implementations extend (not implement) the interface via plugin_platform_interface or base, and that a default implementation or UnimplementedError keeps endorsed impls working.; Applies correct bumps: interface package patch or minor per its own policy, app-facing minor for the new feature, implementation packages minor; explains Dart 0.x shifted-slot semver if any package is pre-1.0.; Treats the advisory as urgent: upgrade dependency to non-affected version, notes ignored_advisories only affects root packages so suppressing does not protect consumers.",
+      "files": [],
+      "expectations": [
+        "Correctly states adding a method to a platform interface is NOT breaking when implementations extend (not implement) the interface via plugin_platform_interface or base, and that a default implementation or UnimplementedError keeps endorsed impls working.",
+        "Applies correct bumps: interface package patch or minor per its own policy, app-facing minor for the new feature, implementation packages minor; explains Dart 0.x shifted-slot semver if any package is pre-1.0.",
+        "Treats the advisory as urgent: upgrade dependency to non-affected version, notes ignored_advisories only affects root packages so suppressing does not protect consumers."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "I'm building a Flutter widget package that draws animated progress rings around arbitrary child content, and it calls a MethodChannel 60 times per second during animation for native telemetry. Consumers report jank on low-end devices. Review these design choices and propose fixes with verification steps. Also: should I override operator == on my widget to skip rebuilds, and can I move the channel work to an isolate?",
+      "expected_output": "Identifies the 60Hz channel chatter as the primary suspect (serialization + thread hop per call) and proposes batching or removing per-frame channel traffic; recommends the child pass-down pattern for animated wrappers around consumer content.; Rejects operator == on widgets citing the documented O(N^2) behavior and suggests same-instance child reuse instead.; Explains isolates do not remove channel serialization costs and Flutter web does not support isolates; proposes profile-mode DevTools measurement in an example app before and after each change.",
+      "files": [],
+      "expectations": [
+        "Identifies the 60Hz channel chatter as the primary suspect (serialization + thread hop per call) and proposes batching or removing per-frame channel traffic; recommends the child pass-down pattern for animated wrappers around consumer content.",
+        "Rejects operator == on widgets citing the documented O(N^2) behavior and suggests same-instance child reuse instead.",
+        "Explains isolates do not remove channel serialization costs and Flutter web does not support isolates; proposes profile-mode DevTools measurement in an example app before and after each change."
+      ]
+    }
+  ]
+}

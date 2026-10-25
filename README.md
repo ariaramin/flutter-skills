@@ -6,7 +6,7 @@ A curated collection of production-focused AI skills for Flutter and Dart develo
 
 ## What’s included ✨
 
-This repository contains **69 skills**. Each skill is a folder:
+This repository contains **70 skills**. Each skill is a folder:
 
 - `SKILL.md` — the skill’s scope, trigger conditions, and operating guidance.
 - `references/` — focused material for version-sensitive, platform-specific, or advanced work where applicable.
@@ -44,6 +44,7 @@ Use this skill for framework-level motion engineering. The separate [Flutter ani
 - [Flutter production engineering](skills/flutter-production-engineering/SKILL.md) — production-grade Flutter and Dart engineering guidance for architecture, performance, scalability, cross-platform behavior, testing, profiling, and maintainability.
 - [Flutter multi-environment](skills/flutter-multi-environment/SKILL.md) — development/staging/production flavors, configuration, and delivery pipelines.
 - [Flutter package selection](skills/flutter-package-plugin-selection/SKILL.md) — evidence-based dependency evaluation and migration decisions.
+- [Flutter/Dart package engineering](skills/flutter-dart-package-engineering/SKILL.md) — design, test, version, and publish Dart packages, Flutter packages, plugins, FFI packages, and federated plugins.
 - [Flutter lints & static analysis](skills/flutter-lints-static-analysis-engineering/SKILL.md) — analyzer configuration, lint governance, and CI quality gates.
 - [Flutter production build & release](skills/flutter-production-build-release/SKILL.md) — production builds, signing, packaging, stores, and release recovery.
 - [Flutter Firebase Core](skills/flutter-firebase-core-engineering/SKILL.md) — Firebase bootstrap, generated configuration, environments, and app-instance lifecycle.

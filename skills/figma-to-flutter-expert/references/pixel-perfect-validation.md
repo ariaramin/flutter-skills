@@ -112,11 +112,11 @@ void main() {
 
 | Visual Symptom in Diff | Root Cause | Engineering Solution |
 |---|---|---|
-| **Text shifted 1–3px vertically** | Flutter default proportional leading vs. Figma centered leading. | Add `leadingDistribution: TextLeadingDistribution.even` to `TextStyle`. Verify `height = lineHeightPx / fontSize`. |
+| **Text shifted vertically** | First check the font file, then the line-height unit. `height` is a multiplier. AUTO means `height: null`. For an explicit height, `TextLeadingDistribution.even` is CSS half-leading and the right first try; Flutter does not guarantee it matches Figma. | Fix the font and `height = lineHeightPx / fontSize` (or `percent / 100`). Add `even` only when height is non-null. Do not translate the text to hide the error. |
 | **Borders 1px thicker/misaligned** | Figma stroke set to `OUTSIDE` or `CENTER`, while Flutter `Border.all` paints `INSIDE`. | Wrap in padding or adjust container outer bounds to accommodate stroke placement. |
 | **Shadow appears clipped or faint** | Parent widget has `clipBehavior: Clip.hardEdge` cutting off the shadow blur radius. | Remove clipping on parent or add padding equal to `blurRadius + spreadRadius`. Verify negative `spreadRadius`. |
 | **Icon misaligned with adjacent text** | Icon SVG has asymmetric viewBox padding (e.g. 24×24 box with 20×18 glyph). | Use `CrossAxisAlignment.center` or align via typographic baseline using `CrossAxisAlignment.baseline`. |
-| **Corner radius looks squarish** | Figma uses iOS Squircle corner smoothing; Flutter code used standard `BorderRadius.circular`. | Switch to `ShapeDecoration(shape: ContinuousRectangleBorder(...))`. |
+| **Corner radius looks squarish** | Figma `cornerSmoothing` is above 0. Smoothing 0 is circular. `0.6` is Figma's iOS 7 squircle. | Compare `BorderRadius` with `ContinuousRectangleBorder` only as a candidate. Flutter does not document a match to Figma's curve. |
 | **Text wrapping prematurely** | Figma text frame width differed by fractional pixels, or kerning/letter spacing was omitted. | Check Figma `letterSpacing`. Ensure text container uses flexible constraints (`Expanded`) rather than fixed width. |
 | **Colors differ slightly (washed out)** | Opacity applied via deprecated `withOpacity` or color space conversion difference (Display P3 vs sRGB). | Use `color.withValues(alpha: ...)` and verify hex color values match Figma sRGB hex codes. |
 

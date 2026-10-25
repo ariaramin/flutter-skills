@@ -1,107 +1,84 @@
-# Sources, Documentation, and Traceability
+# Research findings and coverage audit
 
-This document records the official documentation baseline, primary API references, and architecture guides underpinning the Flutter Production Engineering guidance.
+## Scope, versions, and evidence limits
 
----
+Research date: **2026-10-16**. Live official documentation was retrieved through the web connector. Flutter pages identify a 3.47 documentation baseline; Dart pages identify 3.13.x (one retrieved page: 3.13.3). The local SDK metadata reports **Flutter 3.47.6, stable, with Dart 3.13.5**; the Dart executable independently reports 3.13.5 stable. These establish the local validation context, not the globally newest patch.
 
-## Research Baseline
+The official archive's stable release rows were not present in its retrieved text. The official release JSON could not be retrieved (connector inaccessible; direct request returned HTTP 404). Therefore the latest stable patch and its exact bundled Dart pairing are **not independently confirmed**. Do not convert the archive's future release schedule into an API availability claim. Older projects retain their own SDK and language lower bounds.
 
-- **Research Baseline**: September 4, 2026.
-- **Framework & Language Targets**: Flutter 3.47-era and Dart 3.13-era official specifications and documentation.
-- **Guidance Revalidation**: When upgrading to major new Flutter or Dart releases, revalidate version-sensitive APIs (especially web runtime, multithreading, predictive back navigation, and rendering engine behavior).
+The initial attachment contained the master prompt. On **2026-10-17**, the user supplied `/Users/ariaramin/Projects/agents/rules`, containing all nine named references without the `(1)` suffix. Their full contents have now been compared with the skill and relevant official guidance. See [the per-file supplied-reference audit](supplied-reference-audit.md) for provenance, accepted practices, conflicts and behavioral follow-up. Reading these local summaries does not establish that their underlying books or every paraphrase were independently verified.
 
----
+This is a source-backed engineering synthesis across all eight requested domains, not a claim to have exhaustively read the entire Flutter/Dart documentation or framework source. Package/native behavior remains conditional on the target project's installed versions and supported OS matrix.
 
-## 1. Framework Architecture and Rendering
-- [Flutter Architectural Overview](https://docs.flutter.dev/resources/architectural-overview) — Multi-layer system design, engine architecture, and framework pipeline.
-- [Flutter Performance Best Practices](https://docs.flutter.dev/perf/best-practices) — Official guidance on minimizing rebuild, layout, and paint costs.
-- [Flutter Rendering Performance](https://docs.flutter.dev/perf/rendering-performance) — Deep dive into display lists, layers, rasterization, and frame timing.
+## Findings that changed decisions
 
----
+1. **Architecture recommendations have different strengths.** Flutter strongly recommends UI/data separation, repositories, MVVM, DI and immutable data. Its domain layer and separate API/domain models are conditional; package recommendations do not authorize rewriting a coherent existing app. Preserve the project's boundaries unless a concrete problem justifies change. [Architecture recommendations](https://docs.flutter.dev/app-architecture/recommendations), [architecture guide](https://docs.flutter.dev/app-architecture/guide).
+2. **Local state is valid.** `setState` schedules a build and its callback is synchronous. Its API recommends canceling callbacks rather than treating mounted checks as resource cleanup. Use existing ownership and move only genuinely shared/durable state. [setState API](https://api.flutter.dev/flutter/widgets/State/setState.html).
+3. **Context validity and request identity differ.** `BuildContext.mounted` protects a context after an async gap; it does not reject an older search result while the same screen remains mounted. Generation/disposal guards are engineering choices to preserve latest-result semantics. [mounted API](https://api.flutter.dev/flutter/widgets/BuildContext/mounted.html).
+4. **Web isolate wording required correction.** Dart web does not support isolates. Flutter `compute` executes on the browser's current event loop, whereas native `compute` uses an isolate. `Isolate.run` is not a browser main-thread fallback. Async syntax does not make CPU work parallel. [Dart isolates](https://dart.dev/language/isolates), [compute API](https://api.flutter.dev/flutter/foundation/compute.html), [Flutter isolates](https://docs.flutter.dev/perf/isolates).
+5. **Concurrency has costs and failure semantics.** Isolate startup/capture/transfer matters; `Isolate.run` returns its result using exit without ordinary result copying. `Future.wait` reports errors and preserves input order but does not cancel other operations. Use measured workload and ownership, not fixed JSON-size thresholds. [Isolate.run](https://api.dart.dev/dart-isolate/Isolate/run.html), [Future.wait](https://api.dart.dev/dart-async/Future/wait.html).
+6. **Rebuild, layout, paint and raster costs differ.** Reusing a stable child can skip updates from a parent; repaint boundaries isolate painting and can trade memory/layer cost for less paint work. Neither gives a general speed guarantee. [Framework overview](https://docs.flutter.dev/resources/architectural-overview), [RepaintBoundary API](https://api.flutter.dev/flutter/widgets/RepaintBoundary-class.html), [performance best practices](https://docs.flutter.dev/perf/best-practices).
+7. **Performance acceptance needs target evidence.** Use native profile-mode frame/CPU attribution and comparable release-like browser measurements. Web profiling uses browser tools; native compilation descriptions do not apply universally to web. Retention requires snapshot comparison and retaining-path inspection, not a single high heap sample. [Build modes](https://docs.flutter.dev/testing/build-modes), [Performance view](https://docs.flutter.dev/tools/devtools/performance), [Memory view](https://docs.flutter.dev/tools/devtools/memory).
+8. **Image and release-size advice is platform-specific.** Network image layout should reserve dimensions; web decode-size hints are ignored by the documented API. Native size analysis has documented target support; the old web `--analyze-size` example lacked support. Archive size differs from user download size. [Image.network API](https://api.flutter.dev/flutter/widgets/Image/Image.network.html), [app size](https://docs.flutter.dev/perf/app-size).
+9. **Modern Dart features require version and contract checks.** Sealed types support exhaustive handling, but fallback arms hide new cases. Class modifiers affect outside implementers; extension types are static representation wrappers, not runtime validation. Keep the project's supported language version. [Class modifiers](https://dart.dev/language/class-modifiers), [extension types](https://dart.dev/language/extension-types), [patterns](https://dart.dev/language/patterns), [type system](https://dart.dev/language/type-system).
+10. **Distributed secrets remain extractable.** Obfuscation renames symbols; it does not encrypt resources or protect real secrets. Keep privileged credentials server-side. Durable document retention, encryption/key ownership and retry/idempotency policies require explicit product and transport contracts. The latter policies are engineering judgment, not undocumented Flutter guarantees. [Obfuscation](https://docs.flutter.dev/deployment/obfuscate), [error handling](https://docs.flutter.dev/testing/errors).
 
-## 2. Performance Profiling and DevTools
-- [Flutter Performance Profiling](https://docs.flutter.dev/perf/ui-performance) — Profile-mode workflows, frame charts, and UI vs. raster thread diagnosis.
-- [DevTools Performance View](https://docs.flutter.dev/tools/devtools/performance) — Timeline events, frame analysis, and track widget builds/layouts.
-- [DevTools CPU Profiler](https://docs.flutter.dev/tools/devtools/cpu-profiler) — Bottom-up, top-down, and call-tree flame charts for Dart isolates.
-- [DevTools Memory View](https://docs.flutter.dev/tools/devtools/memory) — Heap snapshots, snapshot diffing, retaining path inspection, and leak detection.
-- [DevTools Network View](https://docs.flutter.dev/tools/devtools/network) — HTTP, HTTPS, and WebSocket traffic inspection on native Dart targets.
+## Baseline conflicts and unsupported rules rejected
 
----
+| Existing material / proposition | Disposition and reason |
+| --- | --- |
+| Existing architecture reference: `Isolate.run` runs on main browser thread | Corrected: web isolates unsupported; only `compute` has the documented same-event-loop fallback. |
+| Native baseline mandated Flutter 3.47+ / Dart 3.13+ APIs | Replaced with project-specific compatibility checks; a research SDK does not authorize raising app constraints. |
+| Feature-first organization as universal guidance | Replaced with coupling/ownership criteria; preserve coherent layer-first projects. |
+| Existing search example guards only superseded success | Replaced by explicit success/error/disposal handling and a runnable example. |
+| Every force unwrap is a guaranteed bug | Replaced by an invariant check; assertions can be correct with a proven contract. |
+| Fixed JSON sizes/time claims and debug slowdown up to 10× | Removed: no target measurements or reproducible benchmark supported those numbers. |
+| Web includes an HTML rendering backend; any browser isolate becomes single-threaded Dart | Removed misleading renderer assumptions; distinguish browser workers/render threads from application isolates. |
+| Native profile/release AOT statements applied to every platform | Qualified by target and build-mode documentation. |
+| `flutter build web --analyze-size` / uniform target commands | Replaced by native documented target scope and installed CLI help; browser transfer inspection for web. |
+| Always purge all user-specific storage at logout | Scoped to session cache/credentials; deleting owned durable documents or keys can cause data loss. |
+| One widget per file; fixed line limits; never `setState`; mandatory package/layer | Rejected as universal rules. Apply only explicit project constraints or demonstrated design needs. |
+| Always parallelize, isolate, cache, or add RepaintBoundary | Rejected: input dependence, lifecycle, transfer cost, memory and measurable bottleneck determine the choice. |
+| All eager ListView children are necessarily laid out and painted offscreen | Corrected: eager child construction/retention differs from viewport layout/painting. |
+| Fading children individually always equals group opacity | Corrected: overlapping content can blend differently. |
 
-## 3. Widgets, State, and Element Identity
-- [State.setState API](https://api.flutter.dev/flutter/widgets/State/setState.html) — Synchronous mutation rules and mounted lifecycle verification.
-- [Widget.key API](https://api.flutter.dev/flutter/widgets/Widget/key.html) — Identity preservation across element tree rebuilds.
-- [GlobalKey API](https://api.flutter.dev/flutter/widgets/GlobalKey-class.html) — Lifecycle and reparenting costs.
-- [AnimatedBuilder API](https://api.flutter.dev/flutter/widgets/AnimatedBuilder-class.html) — Reusing static subtrees via the `child` parameter.
-- [ValueListenableBuilder API](https://api.flutter.dev/flutter/widgets/ValueListenableBuilder-class.html) — Scoped, fine-grained rebuild localization.
+## Official sources examined and coverage audit
 
----
+All links below were retrieved during this run unless a limitation is stated. They are primary documentation, not claims that every linked paragraph was exhaustively reviewed. References summarize decision-relevant facts instead of copying manuals.
 
-## 4. Layout, Scrolling, and Slivers
-- [Understanding Constraints](https://docs.flutter.dev/ui/layout/constraints) — Box constraint principles: constraints go down, sizes go up, parents position.
-- [LayoutBuilder API](https://api.flutter.dev/flutter/widgets/LayoutBuilder-class.html) — Adapting subtrees to incoming parent constraints.
-- [ListView API](https://api.flutter.dev/flutter/widgets/ListView-class.html) — Eager vs. builder lazy collection construction.
-- [SliverList API](https://api.flutter.dev/flutter/widgets/SliverList-class.html) — Viewport sliver list rendering.
-- [SliverFixedExtentList API](https://api.flutter.dev/flutter/widgets/SliverFixedExtentList-class.html) — Efficient fixed-extent scroll geometry calculation.
-- [SliverPrototypeExtentList API](https://api.flutter.dev/flutter/widgets/SliverPrototypeExtentList-class.html) — Extent calculation from prototype widgets.
-- [SliverChildBuilderDelegate API](https://api.flutter.dev/flutter/widgets/SliverChildBuilderDelegate-class.html) — Child element disposal and keep-alive lifecycle.
-- [Long Lists Cookbook](https://docs.flutter.dev/cookbook/lists/long-lists) — Official recipes for large collections.
+| Requested domain / skill sections | Sources examined | Operational use and limits |
+| --- | --- | --- |
+| A: Effective Dart; sections 2–3 | [Overview](https://dart.dev/effective-dart), [style](https://dart.dev/effective-dart/style), [documentation](https://dart.dev/effective-dart/documentation), [usage](https://dart.dev/effective-dart/usage), [design](https://dart.dev/effective-dart/design) | Naming/imports, public contracts, concise readable APIs, nullability/immutability, exception discipline. Retain source strength distinctions and local lint policy. |
+| A: Modern language | [Patterns](https://dart.dev/language/patterns), [class modifiers](https://dart.dev/language/class-modifiers), [extension types](https://dart.dev/language/extension-types), [type system](https://dart.dev/language/type-system), [error handling](https://dart.dev/language/error-handling) | Version-gated syntax, structural results, exhaustive states, substitutability and runtime checks. No experimental variance prescription. |
+| A/B/G: Async and ownership; sections 3–5 | [Isolates](https://dart.dev/language/isolates), [Isolate.run](https://api.dart.dev/dart-isolate/Isolate/run.html), [Future.wait](https://api.dart.dev/dart-async/Future/wait.html), [compute](https://api.flutter.dev/flutter/foundation/compute.html), [mounted](https://api.flutter.dev/flutter/widgets/BuildContext/mounted.html) | Async versus parallel CPU, sendability/transfer, cancellation limits and context validity; generation guards are synthesis. |
+| B: Architecture; sections 2/4/11 | [Recommendations](https://docs.flutter.dev/app-architecture/recommendations), [guide](https://docs.flutter.dev/app-architecture/guide) | Explicit recommendation strengths, ownership and conditional domain/DTO split; folder/package choices remain project decisions. |
+| C: Widgets/rendering; section 5 | [Architectural overview](https://docs.flutter.dev/resources/architectural-overview), [setState](https://api.flutter.dev/flutter/widgets/State/setState.html), [RepaintBoundary](https://api.flutter.dev/flutter/widgets/RepaintBoundary-class.html), [Image.network](https://api.flutter.dev/flutter/widgets/Image/Image.network.html) | Separate element identity/build/layout/paint, local mutation, repaint tradeoffs and decode hints. |
+| C/H: UI adaptation; sections 5/12 | [Adaptive best practices](https://docs.flutter.dev/ui/adaptive-responsive/best-practices), [internationalization](https://docs.flutter.dev/ui/internationalization), [accessibility testing](https://docs.flutter.dev/ui/accessibility/accessibility-testing) | Constraint/input adaptation, locale/direction-aware UI and automated versus real assistive-technology checks. |
+| D: Performance; sections 6/12 | [Best practices](https://docs.flutter.dev/perf/best-practices), [Performance view](https://docs.flutter.dev/tools/devtools/performance), [Memory view](https://docs.flutter.dev/tools/devtools/memory), [build modes](https://docs.flutter.dev/testing/build-modes), [app size](https://docs.flutter.dev/perf/app-size), [Impeller](https://docs.flutter.dev/perf/impeller), [Flutter isolates](https://docs.flutter.dev/perf/isolates) | Measured stage-specific interventions, retained objects, native/web tool differences, renderer/version and size-analysis caveats. No app benchmark was run. |
+| E: Refactoring; sections 7/8/11 | Effective Dart design, Flutter architecture/testing sources above, and [supplied reference comparison](supplied-reference-audit.md) | Extract/move/inline, characterization, seams, SOLID/DRY/KISS/YAGNI and incremental legacy migration are engineering synthesis. All nine local summaries were compared; underlying books were not independently reviewed. |
+| F: Testing/tooling; sections 8/9/12 | [Testing overview](https://docs.flutter.dev/testing/overview), [static analysis](https://dart.dev/tools/analysis), [build modes](https://docs.flutter.dev/testing/build-modes), [accessibility testing](https://docs.flutter.dev/ui/accessibility/accessibility-testing) | Focused behavior/unit/widget/integration/golden gates; required CI retained; no invented coverage quota. |
+| G: Reliability/security; sections 3/4/8/12 | [Obfuscation](https://docs.flutter.dev/deployment/obfuscate), [Flutter error handling](https://docs.flutter.dev/testing/errors), [Dart error handling](https://dart.dev/language/error-handling), [JSON serialization](https://docs.flutter.dev/data-and-backend/serialization/json) | No client secret guarantee; preserve framework/async reporting, validate trust boundaries. TLS/retry/secure-storage implementation needs maintained package/platform sources for each actual project. |
+| H: Native/web integration; sections 2/5/11/12 | [Supported platforms](https://docs.flutter.dev/reference/supported-platforms), [platform channels](https://docs.flutter.dev/platform-integration/platform-channels), [FFI](https://docs.flutter.dev/platform-integration/bind-native-code), [web overview](https://docs.flutter.dev/platform-integration/web), [Wasm](https://docs.flutter.dev/platform-integration/web/wasm) | All six targets represented; inspect OS/plugin/toolchain matrix, ABI/ownership and browser hosting constraints. Background execution and native packaging require target-specific verification. |
+| Version context | [SDK archive](https://docs.flutter.dev/install/archive) plus local SDK metadata and Dart executable | Documentation baseline/local stable confirmed; globally latest patch unavailable as described above. |
 
----
+## Platform-specific findings
 
-## 5. Painting and Image Optimization
-- [RepaintBoundary API](https://api.flutter.dev/flutter/widgets/RepaintBoundary-class.html) — Display-list isolation across repaint frequencies.
-- [CustomPainter API](https://api.flutter.dev/flutter/rendering/CustomPainter-class.html) — Deterministic painting, `shouldRepaint`, and `repaint` listenables.
-- [Image API](https://api.flutter.dev/flutter/widgets/Image-class.html) — Image decoding, cache parameters, and sizing.
-- [ResizeImage API](https://api.flutter.dev/flutter/painting/ResizeImage-class.html) — Downsampling decoded image dimensions to save RAM.
+Native channels/FFI have thread, registration, ABI and ownership constraints; browser JS interop is a separate boundary. Current FFI documentation recommends the `package_ffi` build-hook template since Flutter 3.38, with older plugin workflows still relevant to older projects. This is not an instruction to migrate existing packages automatically.
 
----
+Wasm renderer threading requires suitable cross-origin isolation headers and browser compatibility. It does not create Dart isolates. Current Impeller defaults vary by platform/SDK; verify the actual renderer rather than applying an old shader-cache recipe. Native filesystem and background scheduling guarantees cannot be assumed in a browser, and an isolate does not keep an app alive after OS termination.
 
-## 6. Architecture, State, and Concurrency
-- [Flutter App Architecture Guide](https://docs.flutter.dev/app-architecture/guide) — Layered separation of UI, presentation, domain, and data repositories.
-- [Flutter App Architecture Recommendations](https://docs.flutter.dev/app-architecture/recommendations) — Unidirectional data flow, state holders, and testing boundaries.
-- [Flutter State Management Fundamentals](https://docs.flutter.dev/data-and-backend/state-mgmt/intro) — Ephemeral vs. app state.
-- [Dart Concurrency](https://dart.dev/language/concurrency) — Isolates, memory heaps, message passing, and event loops.
-- [Isolate.run API](https://api.dart.dev/dart-isolate/Isolate/run.html) — Simplified worker execution for heavy CPU tasks.
-- [Flutter compute API](https://api.flutter.dev/flutter/foundation/compute.html) — Cross-platform task offloading and web event-loop behavior.
-- [Dart Asynchronous Programming](https://dart.dev/libraries/async/async-await) — `Future`, `Stream`, and async control flow.
+## Behavioral validation interpretation
 
----
+The revision is a technique/reference skill. Baselines used the previous skill snapshot in isolated temporary output directories; revised runs use the new files. Three scenarios cover web CPU import, older-SDK scoped refactoring, and search/data/secret review boundaries.
 
-## 7. Navigation, Adaptive UI, and Accessibility
-- [Flutter Navigation and Routing](https://docs.flutter.dev/ui/navigation) — Imperative Navigator vs. declarative Router concepts.
-- [Flutter Deep Linking](https://docs.flutter.dev/ui/navigation/deep-linking) — Configuring Universal Links, App Links, and web URLs.
-- [Android Predictive Back Migration](https://docs.flutter.dev/release/breaking-changes/android-predictive-back) — Migrating from `WillPopScope` to `PopScope`.
-- [Flutter State Restoration](https://docs.flutter.dev/platform-integration/android/restore-state-android) — Surviving OS process death.
-- [Adaptive and Responsive Design](https://docs.flutter.dev/ui/adaptive-responsive) — Space-driven layout adaptations.
-- [Large Screen Guidance](https://docs.flutter.dev/ui/adaptive-responsive/large-screens) — Multi-pane, persistent navigation, and desktop ergonomics.
-- [Flutter Accessibility](https://docs.flutter.dev/ui/accessibility-and-internationalization/accessibility) — Semantics, screen readers, and contrast.
-- [Accessibility Testing](https://docs.flutter.dev/ui/accessibility-and-internationalization/accessibility-testing) — Automated accessibility guideline matchers.
-- [Keyboard and Focus](https://docs.flutter.dev/ui/interactivity/focus) — Focus nodes, traversal, actions, and shortcuts.
+The first three old-skill runs already made safe decisions, including correcting the bad web claim. They provide no demonstrated behavioral failure and cannot substantiate a causal improvement claim. Direct comparison against official API contracts did expose baseline reference defects listed above. Corrections address those demonstrated documentation errors and coverage gaps; they are not rationalization counters inferred from invented agent failures.
 
----
+Evaluation scores are manual semantic checks with output-specific evidence, not text/heading regex matches. One sample per scenario/configuration cannot establish reliability, trigger accuracy or performance gains. Agent token/duration telemetry was not supplied by this host; cost/speed comparisons are unavailable, not zero. The report/viewer records that limitation. Human review remains pending. No automatic description-optimization loop, personal installation, commit, push or publication is implied.
 
-## 8. Testing, Build, and Size Optimization
-- [Flutter Testing Overview](https://docs.flutter.dev/testing/overview) — Unit, widget, and integration testing suites.
-- [Flutter Integration Testing](https://docs.flutter.dev/testing/integration-tests) — End-to-end testing with `package:integration_test`.
-- [Flutter Performance Profiling Tests](https://docs.flutter.dev/testing/integration-tests#performance-profiling) — Automated frame-timeline tracing.
-- [Flutter Build Modes](https://docs.flutter.dev/testing/build-modes) — Differences between debug, profile, and release builds.
-- [Flutter App Size Tooling](https://docs.flutter.dev/perf/app-size) — Analyzing binary footprint with `--analyze-size`.
-- [Flutter Web Compilation](https://docs.flutter.dev/platform-integration/web/building) — JavaScript vs. WebAssembly compilation.
-- [Flutter Web Wasm](https://docs.flutter.dev/platform-integration/web/wasm) — Wasm deployment, browser compatibility, and COOP/COEP headers.
-- [Deferred Components](https://docs.flutter.dev/perf/deferred-components) — Dynamic feature modules and deferred asset downloading.
+### Validation follow-up: 2026-10-17
 
----
+Five outputs were recovered from the saved review page; the missing revised-skill refactoring scenario was completed by an independent agent. Original execution transcripts and the temporary baseline snapshot are no longer available. Both versions passed all nine scenario assertions. These plan/review tests demonstrate no incremental benefit and do not establish executable application correctness.
 
-## 9. Dart Engineering and Language Features
-- [Effective Dart](https://dart.dev/effective-dart) — Style, documentation, usage, and design guidelines.
-- [Dart Class Modifiers](https://dart.dev/language/class-modifiers) — `sealed`, `base`, `interface`, and `final` classes.
-- [Dart Patterns](https://dart.dev/language/patterns) — Pattern matching, destructuring, and switch expressions.
-- [Dart Null Safety](https://dart.dev/null-safety) — Sound null safety principles and avoiding force unwraps.
+Live official `compute`, isolate, and architecture documentation was refreshed for the platform and recommendation distinctions above. Broader research remains dated 2026-10-16; it was not exhaustively repeated. The subsequently supplied local references were read and compared on 2026-10-17; their dispositions and provenance limits are recorded in [the supplied-reference audit](supplied-reference-audit.md).
 
----
-
-## 10. Breaking Changes and Evolution Tracking
-- [Flutter Breaking Changes Index](https://docs.flutter.dev/release/breaking-changes) — Official registry of deprecations and architectural updates.
-- [Flutter SDK Archive](https://docs.flutter.dev/install/archive) — Stable channel version history.
-- [Platform & UI Thread Merging](https://docs.flutter.dev/release/breaking-changes/multi-window-and-multi-view) — Evolving Flutter engine native threading model.
+The cached Dart 3.13.5 executable passed analysis and the assert-based checks for `examples/latest_search.dart`. Ruby parsed the YAML frontmatter, and a focused local-link check verified the skill's relative Markdown links. The bundled Python `quick_validate.py` could not run because PyYAML is missing; an isolated dependency installation also failed. No dependency was added to this repository. Runtime profiling, all-platform execution, and human evaluation remain pending.

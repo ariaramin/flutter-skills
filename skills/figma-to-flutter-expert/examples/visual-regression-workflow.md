@@ -151,4 +151,4 @@ If the test fails, Flutter generates three comparison images in the `failures/` 
 Inspect the `_diff.png`:
 * **Solid red borders**: Geometry / padding discrepancy. Check Figma frame padding vs Flutter `EdgeInsets`.
 * **Slight red halos around text**: Font smoothing or line height leading difference. Ensure `leadingDistribution: TextLeadingDistribution.even` is set.
-* **Red edge fringe on corners**: Check corner radius (standard `BorderRadius` vs `ContinuousRectangleBorder` squircle).
+* **Red edge fringe on corners**: Check the numeric radius first. `ContinuousRectangleBorder` is only a candidate when Figma `cornerSmoothing` is near 0.6, and it is not a documented match.

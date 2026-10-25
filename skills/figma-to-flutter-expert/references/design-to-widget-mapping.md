@@ -76,7 +76,7 @@ This reference defines the deterministic mapping from Figma design elements, Aut
   )
   ```
 * **Pre-3.27 Fallback**: Explicit `SizedBox(width: gap)` or `SizedBox(height: gap)` between items.
-* **Wrap Spacing**: In `Wrap`, use `spacing: 8.0` (cross-axis gap within run) and `runSpacing: 12.0` (gap between runs).
+* **Wrap Spacing**: In `Wrap`, `spacing` is the gap along the main axis inside a run. `runSpacing` is the gap between runs. Figma `counterAxisSpacing` maps to `runSpacing`.
 
 ---
 
@@ -125,27 +125,16 @@ When a Figma layer inside Auto Layout has `layoutPositioning: ABSOLUTE`:
   )
   ```
 * **Center Stroke (`CENTER`)**:
-  Stroke straddles boundary. In Flutter, shrink inner content or use custom painter.
+  `Border.all(strokeAlign: BorderSide.strokeAlignCenter)` when the border color is uniform. The stroke straddles the edge and can be clipped by a parent.
 * **Outside Stroke (`OUTSIDE`)**:
-  Border extends outside frame. Wrap in an outer `Padding` with border or outline widget so stroke does not clip.
+  `Border.all(strokeAlign: BorderSide.strokeAlignOutside)` when the border color is uniform. Flutter does not grow the layout box to contain it. A parent clip will cut it off. Figma `strokesIncludedInLayout` decides whether the design size already includes that stroke.
 
 ### Corner Radius & Smoothing (Squircle)
 * **Standard Uniform Radius**: `BorderRadius.circular(16.0)`
 * **Independent Corner Radii**:
   `BorderRadius.only(topLeft: Radius.circular(16), topRight: Radius.circular(4), ...)`
-* **Corner Smoothing (iOS Squircle)**:
-  Figma's corner smoothing slider produces continuous curvature. Use `ShapeDecoration` with `ContinuousRectangleBorder`:
-  ```dart
-  DecoratedBox(
-    decoration: ShapeDecoration(
-      color: AppColors.surface,
-      shape: ContinuousRectangleBorder(
-        borderRadius: BorderRadius.circular(24.0),
-      ),
-    ),
-    child: child,
-  )
-  ```
+* **Corner Smoothing**:
+  `cornerSmoothing` of 0 is a circular corner: `BorderRadius.circular`. A value of 0.6 is Figma's iOS 7 squircle. `ContinuousRectangleBorder` has no smoothing parameter and Flutter does not document it as that curve. Try it only when smoothing is near 0.6, and compare. Do not replace circular radii with it.
 
 ### Shadows & Visual Effects
 * **Drop Shadow**:

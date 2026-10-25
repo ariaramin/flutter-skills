@@ -58,7 +58,7 @@ Widget _buildBadButton() {
 ---
 
 ### The Expert Production Implementation
-* Uses `DecoratedBox` and `ShapeDecoration` with `ContinuousRectangleBorder` (iOS squircle).
+* Uses `DecoratedBox` and `ShapeDecoration` with a circular `RoundedRectangleBorder`. Use `ContinuousRectangleBorder` only when Figma `cornerSmoothing` is near 0.6, then compare it.
 * Utilizes native `spacing: 12.0` on `Column` (Flutter 3.27+).
 * Correct line height ratio: `height: 24.0 / 18.0`.
 * Correct vertical leading alignment: `leadingDistribution: TextLeadingDistribution.even`.
@@ -95,7 +95,7 @@ class ProductFeatureCard extends StatelessWidget {
       child: DecoratedBox(
         decoration: ShapeDecoration(
           color: theme.colorScheme.surface,
-          shape: ContinuousRectangleBorder(
+          shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(24.0),
             side: BorderSide(
               color: theme.colorScheme.outlineVariant.withValues(alpha: 0.5),

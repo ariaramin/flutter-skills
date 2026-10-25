@@ -115,7 +115,7 @@ Calling `canvas.saveLayer` forces the GPU to allocate a temporary offscreen buff
 
 ## 5. Preventing the Intrinsic Layout Hazard
 
-`IntrinsicHeight` and `IntrinsicWidth` evaluate child layout constraints speculatively with **$O(N^2)$ algorithmic complexity**.
+`RenderIntrinsicHeight` and `RenderIntrinsicWidth` are relatively expensive because they add a speculative layout pass. In the worst case the layout is O(N²) in the depth of the tree. That is not a claim that every use drops frames.
 
 *Rule*:
 * **Permitted**: Shallow, fixed horizontal rows (e.g. `Row` with 2 buttons separated by a `VerticalDivider`).

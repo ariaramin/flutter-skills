@@ -1,0 +1,38 @@
+{
+  "skill_name": "flutter-production-engineering",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Our Flutter app targets Chrome, Android, and Windows. A 10 MB JSON import freezes the UI. Give the smallest implementation plan and platform-appropriate API choices. Can we use Isolate.run everywhere, since it runs on the main browser thread on web? No device profiles are available. Include verification and stop conditions.",
+      "expected_output": "Rejects Isolate.run as a supported web fallback and explains that web compute does not parallelize CPU work.; Chooses native isolate versus explicit browser yielding/worker strategy with startup, transfer and publication tradeoffs.; Labels performance as unverified and provides representative target measurements and stop criteria.",
+      "files": [],
+      "expectations": [
+        "Rejects Isolate.run as a supported web fallback and explains that web compute does not parallelize CPU work.",
+        "Chooses native isolate versus explicit browser yielding/worker strategy with startup, transfer and publication tradeoffs.",
+        "Labels performance as unverified and provides representative target measurements and stop criteria."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "A Flutter 3.24 app with Dart >=3.5 <4 uses layer-first folders and local setState for a six-item settings page. Clean it up without changing behavior. A teammate wants feature-first folders, repositories/use cases, latest ListView scrollCacheExtent, one widget per file, and RepaintBoundary everywhere. No toolchain or project files are available here. Give a concrete scoped plan, exact suggested checks, stop conditions, and whether each requested migration is justified.",
+      "expected_output": "Preserves supported SDK/language constraints and rejects unverified latest APIs or automatic SDK upgrades.; Keeps justified local state and current folder structure; rejects blanket layers, file splitting and repaint boundaries.; Proposes focused behavior-preservation checks and clearly marks commands unexecuted.",
+      "files": [],
+      "expectations": [
+        "Preserves supported SDK/language constraints and rejects unverified latest APIs or automatic SDK upgrades.",
+        "Keeps justified local state and current folder structure; rejects blanket layers, file splitting and repaint boundaries.",
+        "Proposes focused behavior-preservation checks and clearly marks commands unexecuted."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Review only these excerpts. lib/search.dart:10-16 search(q) awaits api.query(q), assigns results then notifyListeners; dispose() only calls super.dispose(). lib/archive.dart:20-27 logout clears all local encrypted offline documents before clearing session. The app promises offline document ownership independent of login. lib/config.dart:3 stores a provider secret in dotenv and assumes obfuscation hides it. Give evidence-based prioritized findings, fixes and focused tests. Do not rewrite app or claim execution.",
+      "expected_output": "Identifies both out-of-order search completions and post-disposal publication, with focused controlled-future checks.; Preserves durable offline documents and their required keys according to ownership rather than blanket logout deletion.; Explains client secret extraction and server-side boundary, with file-specific priorities and no invented execution.",
+      "files": [],
+      "expectations": [
+        "Identifies both out-of-order search completions and post-disposal publication, with focused controlled-future checks.",
+        "Preserves durable offline documents and their required keys according to ownership rather than blanket logout deletion.",
+        "Explains client secret extraction and server-side boundary, with file-specific priorities and no invented execution."
+      ]
+    }
+  ]
+}
