@@ -1,110 +1,552 @@
-const skills = [
-  { name: 'Flutter production engineering', group: 'Foundations', icon: '⚡', description: 'Production-grade architecture, performance, profiling, and maintainability.', featured: true },
-  { name: 'Senior Flutter architecture', group: 'Foundations', icon: '⌘', description: 'Production architecture, boundaries, and explicit trade-offs.', featured: true },
-  { name: 'Design patterns', group: 'Foundations', icon: '◈', description: 'Choose and apply 22 classic object-oriented patterns with concrete trade-offs.' },
-  { name: 'Dart & Flutter Equatable', group: 'Foundations', icon: '◆', description: 'Value equality, immutable state, and reliable rebuilds.' },
-  { name: 'Freezed', group: 'Foundations', icon: '◇', description: 'Immutable models, unions, JSON serialization, and code generation.' },
-  { name: 'Flutter multi-environment', group: 'Foundations', icon: '⌂', description: 'Development, staging, production flavors, and configuration.' },
-  { name: 'Flutter/Dart package engineering', group: 'Foundations', icon: '▣', description: 'Design, test, version, and publish Dart packages, plugins, FFI packages, and federated plugins.' },
-  { name: 'Flutter design systems', group: 'UI & UX', icon: '▦', description: 'Tokens, components, states, and design.md to Flutter workflows.', featured: true },
-  { name: 'Figma to Flutter', group: 'UI & UX', icon: '❖', description: 'Pixel-accurate Flutter conversion of Figma designs, Auto Layout, tokens, and responsive UI.' },
-  { name: 'Flutter animations', group: 'UI & UX', icon: '◌', description: 'Accessible motion, transitions, and animation performance.' },
-  { name: 'Rive Flutter', group: 'UI & UX', icon: '◈', description: 'C++ runtime integration, state machines, and multi-platform rendering.' },
-  { name: 'Lottie for Flutter', group: 'UI & UX', icon: '◎', description: 'Pure Dart vector animations, composition caching, delegates, and markers.' },
-  { name: 'Flutter SVG', group: 'UI & UX', icon: '✦', description: 'Rendering, theming, caching, performance, and SVG security.' },
-  { name: 'Flutter image performance', group: 'UI & UX', icon: '▧', description: 'Image loading, decoding, caching, and memory use.' },
-  { name: 'document_camera_frame', group: 'UI & UX', icon: '◱', description: 'Framed camera, auto-capture alignment, on-device OCR, and multi-page export.' },
-  { name: 'Flutter UI performance', group: 'Performance', icon: '⌁', description: 'Frame-budget analysis, rebuild, layout, paint, and raster work.', featured: true },
-  { name: 'Flutter jank optimization', group: 'Performance', icon: '↯', description: 'Profiling and fixing dropped frames, slow scrolling, and latency.' },
-  { name: 'Flutter concurrency', group: 'Performance', icon: '⇄', description: 'Isolates, async workflows, lifecycle management, and efficiency.' },
-  { name: 'Flutter memory leaks', group: 'Performance', icon: '◎', description: 'Lifecycle defects, leak tracking, and regression prevention.' },
-  { name: 'Flutter Dio', group: 'Platform & data', icon: '⇄', description: 'Production HTTP clients, auth, retries, transfers, and observability.' },
-  { name: 'Flutter go_router', group: 'Platform & data', icon: '↗', description: 'Routing, deep links, redirects, and nested navigation.' },
-  { name: 'Flutter Supabase', group: 'Platform & data', icon: '▲', description: 'Auth, RLS, database access, realtime, storage, and edge functions.' },
-  { name: 'Flutter Drift', group: 'Platform & data', icon: '▤', description: 'Relational persistence, migrations, and reactive SQLite queries.' },
-  { name: 'hydrated_bloc', group: 'Platform & data', icon: '▣', description: 'Persist and restore Bloc/Cubit state across restarts with safe schemas and keys.' },
-  { name: 'document_scan for Flutter', group: 'Platform & data', icon: '▣', description: 'Document corners, perspective correction, live frames, and scan testing.' },
-  { name: 'flutter_doc_scanner', group: 'Platform & data', icon: '▤', description: 'Native ML Kit and VisionKit document scanning, images, and PDF compilation.' },
-  { name: 'Flutter secure storage', group: 'Security', icon: '◇', description: 'Protected credentials and platform key stores.' },
-  { name: 'Flutter application security', group: 'Security', icon: '⬡', description: 'End-to-end application security reviews and remediation.' },
-  { name: 'Flutter app hardening', group: 'Security', icon: '◈', description: 'Tamper protection, reverse-engineering resistance, and releases.' },
-  { name: 'Flutter Firebase Analytics', group: 'Production', icon: '✦', description: 'Product events, consent, identity, and measurement quality.' },
-  { name: 'Flutter Sentry', group: 'Production', icon: '◉', description: 'Crash reporting, tracing, symbolication, and privacy.' },
-  { name: 'Flutter production build & release', group: 'Production', icon: '⤴', description: 'Builds, signing, packaging, stores, and release recovery.' },
-  { name: 'Test before deploy', group: 'Quality', icon: '✓', description: 'Release-ready test coverage using a practical quality taxonomy.' },
-  { name: 'Flutter lints & static analysis', group: 'Quality', icon: '☷', description: 'Analyzer configuration, lint governance, and CI quality gates.' },
-  { name: 'Flutter expert tips', group: 'Quality', icon: '✧', description: 'Practical implementation, debugging, refactoring, and modernization.' },
-];
+const repository = 'ariaramin/flutter-skills';
 
 const categories = [
-  ['Foundations', '⌘', 'Architecture, Dart, state, and app structure.', '05'],
-  ['UI & UX', '◌', 'Components, motion, images, and design systems.', '08'],
-  ['Platform & data', '⇄', 'Networking, navigation, storage, and services.', '06'],
-  ['Production', '⤴', 'Performance, security, testing, and delivery.', '13'],
+  { id: 'foundations', name: 'Foundations and architecture', short: 'Foundations', icon: '⌘', description: 'Architecture, Dart, packages, and the structure of the app.' },
+  { id: 'ui', name: 'UI and user experience', short: 'UI & UX', icon: '◌', description: 'Design systems, motion, media, and interface behavior.' },
+  { id: 'performance', name: 'Performance and reliability', short: 'Performance', icon: '⌁', description: 'Frame budgets, memory, caching, and concurrency.' },
+  { id: 'observability', name: 'Observability', short: 'Observability', icon: '◉', description: 'Analytics, crashes, and production diagnostics.' },
+  { id: 'platform', name: 'Networking, navigation, and platform capabilities', short: 'Platform', icon: '⇄', description: 'HTTP, routing, links, web content, and device permissions.' },
+  { id: 'storage', name: 'Storage and dependency injection', short: 'Storage', icon: '▤', description: 'Databases, files, persisted state, and dependency lifetimes.' },
+  { id: 'security', name: 'Security', short: 'Security', icon: '⬡', description: 'Credentials, application security, and release hardening.' },
+  { id: 'testing', name: 'Testing and delivery', short: 'Testing', icon: '✓', description: 'What to prove before a release goes out.' },
 ];
 
-const repository = 'ariaramin/flutter-skills';
-const skillFiles = {
-  'Flutter production engineering': 'flutter-production-engineering',
-  'Senior Flutter architecture': 'senior-flutter-architecture',
-  'Design patterns': 'shvets-design-patterns',
-  'Dart & Flutter Equatable': 'dart-flutter-equatable-engineering',
-  Freezed: 'freezed-production-engineering',
-  'Flutter multi-environment': 'flutter-multi-environment',
-  'Flutter/Dart package engineering': 'flutter-dart-package-engineering',
-  'Flutter design systems': 'flutter-design-system-from-design-md',
-  'Figma to Flutter': 'figma-to-flutter-expert',
-  'Flutter animations': 'flutter-animations-production-engineering',
-  'Rive Flutter': 'rive-flutter',
-  'Lottie for Flutter': 'lottie-flutter',
-  'Flutter SVG': 'flutter-svg-engineering',
-  'Flutter image performance': 'flutter-image-performance',
-  'Flutter UI performance': 'flutter-ui-performance-engineering',
-  'Flutter jank optimization': 'flutter-performance-jank-optimization',
-  'Flutter concurrency': 'flutter-concurrency-memory-performance',
-  'Flutter memory leaks': 'flutter-memory-leak-engineering',
-  'Flutter Dio': 'flutter-dio-engineering',
-  'Flutter go_router': 'flutter-go-router-engineering',
-  'Flutter Supabase': 'flutter-supabase-engineering',
-  'Flutter Drift': 'flutter-drift-persistence-engineering',
-  hydrated_bloc: 'hydrated-bloc',
-  'document_scan for Flutter': 'document-scan-flutter',
-  document_camera_frame: 'document-camera-frame',
-  flutter_doc_scanner: 'flutter-doc-scanner',
-  'Flutter secure storage': 'flutter-secure-storage-security-engineering',
-  'Flutter application security': 'flutter-application-security-engineering',
-  'Flutter app hardening': 'flutter-app-hardening-reverse-engineering',
-  'Flutter Firebase Analytics': 'flutter-firebase-analytics',
-  'Flutter Sentry': 'flutter-sentry-engineering',
-  'Flutter production build & release': 'flutter-production-build-release',
-  'Test before deploy': 'test-before-deploy',
-  'Flutter lints & static analysis': 'flutter-lints-static-analysis-engineering',
-  'Flutter expert tips': 'flutter-expert-tips',
-};
+const skills = [
+  {
+    "name": "Dart args",
+    "slug": "dart-args-production-cli",
+    "group": "foundations",
+    "mark": "AR",
+    "description": "production command-line interfaces, subcommands, flags, and executable tooling"
+  },
+  {
+    "name": "Dart & Flutter Equatable",
+    "slug": "dart-flutter-equatable-engineering",
+    "group": "foundations",
+    "mark": "EQ",
+    "description": "value equality, immutable state, and reliable rebuild behavior"
+  },
+  {
+    "name": "Freezed",
+    "slug": "freezed-production-engineering",
+    "group": "foundations",
+    "mark": "FR",
+    "description": "immutable models, sealed unions, JSON serialization, and code generation"
+  },
+  {
+    "name": "Dart & Flutter FFI",
+    "slug": "dart-flutter-ffi-systems-engineering",
+    "group": "foundations",
+    "mark": "FF",
+    "description": "native integration, memory ownership, ABI safety, and platform packaging"
+  },
+  {
+    "name": "Dart meta",
+    "slug": "dart-meta",
+    "group": "foundations",
+    "mark": "ME",
+    "description": "annotations, API contracts, immutability, and analyzer-guided modernization"
+  },
+  {
+    "name": "Senior Flutter architecture",
+    "slug": "senior-flutter-architecture",
+    "group": "foundations",
+    "mark": "SA",
+    "description": "production Flutter/Dart architecture with explicit trade-offs",
+    "featured": true
+  },
+  {
+    "name": "Design patterns",
+    "slug": "shvets-design-patterns",
+    "group": "foundations",
+    "mark": "DP",
+    "description": "22 classic object-oriented patterns, with source-backed decisions, examples, and trade-offs"
+  },
+  {
+    "name": "Senior mobile architecture",
+    "slug": "senior-mobile-architecture",
+    "group": "foundations",
+    "mark": "SM",
+    "description": "architecture reviews and refactoring across iOS, Android, and cross-platform apps"
+  },
+  {
+    "name": "Flutter production engineering",
+    "slug": "flutter-production-engineering",
+    "group": "foundations",
+    "mark": "PE",
+    "description": "architecture, performance, scalability, cross-platform behavior, testing, profiling, and maintainability",
+    "featured": true
+  },
+  {
+    "name": "Flutter multi-environment",
+    "slug": "flutter-multi-environment",
+    "group": "foundations",
+    "mark": "ME",
+    "description": "development, staging, and production flavors, configuration, and delivery pipelines"
+  },
+  {
+    "name": "Flutter package selection",
+    "slug": "flutter-package-plugin-selection",
+    "group": "foundations",
+    "mark": "PS",
+    "description": "evidence-based dependency evaluation and migration decisions"
+  },
+  {
+    "name": "Flutter/Dart package engineering",
+    "slug": "flutter-dart-package-engineering",
+    "group": "foundations",
+    "mark": "PE",
+    "description": "design, test, version, and publish Dart packages, Flutter packages, plugins, FFI packages, and federated plugins"
+  },
+  {
+    "name": "Flutter lints & static analysis",
+    "slug": "flutter-lints-static-analysis-engineering",
+    "group": "foundations",
+    "mark": "LS",
+    "description": "analyzer configuration, lint governance, and CI quality gates"
+  },
+  {
+    "name": "Flutter production build & release",
+    "slug": "flutter-production-build-release",
+    "group": "foundations",
+    "mark": "PB",
+    "description": "production builds, signing, packaging, stores, and release recovery"
+  },
+  {
+    "name": "Flutter Firebase Core",
+    "slug": "flutter-firebase-core-engineering",
+    "group": "foundations",
+    "mark": "FC",
+    "description": "Firebase bootstrap, generated configuration, environments, and app-instance lifecycle"
+  },
+  {
+    "name": "Flutter mobile development",
+    "slug": "flutter-mobile-development",
+    "group": "foundations",
+    "mark": "MD",
+    "description": "practical Flutter delivery across app structure, UI, state, platform, testing, and release work"
+  },
+  {
+    "name": "Figma to Flutter",
+    "slug": "figma-to-flutter-expert",
+    "group": "ui",
+    "mark": "FT",
+    "description": "Flutter implementation of Figma frames, Auto Layout, tokens, and responsive multi-platform UI",
+    "featured": true
+  },
+  {
+    "name": "HTML to Flutter",
+    "slug": "html-to-flutter",
+    "group": "ui",
+    "mark": "HT",
+    "description": "production Flutter ports of HTML/CSS/JavaScript interfaces"
+  },
+  {
+    "name": "React to Flutter",
+    "slug": "react-to-flutter",
+    "group": "ui",
+    "mark": "RT",
+    "description": "behavior-preserving React web migrations to Flutter"
+  },
+  {
+    "name": "Flutter animations",
+    "slug": "flutter-animations-production-engineering",
+    "group": "ui",
+    "mark": "AN",
+    "description": "Material motion, transitions, accessibility, and animation performance"
+  },
+  {
+    "name": "Flutter motion engineering",
+    "slug": "flutter-motion-engineering",
+    "group": "ui",
+    "mark": "ME",
+    "description": "interaction continuity, interruptible springs, platform transitions, rendering diagnostics, accessibility, and tested Dart examples"
+  },
+  {
+    "name": "Rive Flutter",
+    "slug": "rive-flutter",
+    "group": "ui",
+    "mark": "RI",
+    "description": "C++ runtime integration, state machines, inputs, layout, lifecycle, and multi-platform rendering with `rive`"
+  },
+  {
+    "name": "Lottie for Flutter",
+    "slug": "lottie-flutter",
+    "group": "ui",
+    "mark": "LO",
+    "description": "pure Dart vector animations, composition caching, frame-rate throttling, dynamic delegates, marker playback, and list performance with `lottie`"
+  },
+  {
+    "name": "Flutter Confetti",
+    "slug": "flutter-confetti-engineering",
+    "group": "ui",
+    "mark": "CO",
+    "description": "lifecycle-safe, accessible celebration effects and particle performance"
+  },
+  {
+    "name": "Flutter native splash",
+    "slug": "flutter-native-splash-engineering",
+    "group": "ui",
+    "mark": "NS",
+    "description": "Android, iOS, and web launch resources, transitions, flavors, and startup behavior"
+  },
+  {
+    "name": "Flutter image performance",
+    "slug": "flutter-image-performance",
+    "group": "ui",
+    "mark": "IP",
+    "description": "image loading, decoding, caching, rendering, and memory use"
+  },
+  {
+    "name": "Flutter image_picker",
+    "slug": "flutter-image-picker-production-engineering",
+    "group": "ui",
+    "mark": "IP",
+    "description": "photo and video acquisition, lost-data recovery, platform behavior, and media safety"
+  },
+  {
+    "name": "document_scan for Flutter",
+    "slug": "document-scan-flutter",
+    "group": "ui",
+    "mark": "DS",
+    "description": "headless document detection, perspective correction, live camera frames, and scan testing on Android and iOS"
+  },
+  {
+    "name": "document_camera_frame",
+    "slug": "document-camera-frame",
+    "group": "ui",
+    "mark": "DC",
+    "description": "framed camera, auto-capture alignment, on-device OCR, multi-page PDF or image export, and native document scanning"
+  },
+  {
+    "name": "flutter_doc_scanner",
+    "slug": "flutter-doc-scanner",
+    "group": "ui",
+    "mark": "DS",
+    "description": "native ML Kit and VisionKit document scanning, multi-page image capture, and PDF compilation on Android and iOS"
+  },
+  {
+    "name": "Flutter pro_image_editor",
+    "slug": "flutter-pro-image-editor-engineering",
+    "group": "ui",
+    "mark": "PI",
+    "description": "image editing, state persistence, export, privacy, and large-image performance"
+  },
+  {
+    "name": "Flutter video_player",
+    "slug": "flutter-video-player-production-engineering",
+    "group": "ui",
+    "mark": "VP",
+    "description": "cross-platform playback, controller lifecycle, streaming, codecs, and decoder performance"
+  },
+  {
+    "name": "Flutter CamerAwesome",
+    "slug": "camerawesome-flutter",
+    "group": "ui",
+    "mark": "CA",
+    "description": "camera preview, capture modes, ML Kit image analysis, orientation, and CameraX/AVFoundation performance"
+  },
+  {
+    "name": "Flutter Skeletonizer",
+    "slug": "flutter-skeletonizer-engineering",
+    "group": "ui",
+    "mark": "SK",
+    "description": "accessible loading states"
+  },
+  {
+    "name": "Flutter SVG",
+    "slug": "flutter-svg-engineering",
+    "group": "ui",
+    "mark": "SV",
+    "description": "rendering, theming, caching, performance, and SVG security"
+  },
+  {
+    "name": "Flutter Pinput",
+    "slug": "flutter-pinput",
+    "group": "ui",
+    "mark": "PI",
+    "description": "PIN, OTP, and SMS verification fields with iOS and Android autofill, custom cursors, animations, and accessible theming"
+  },
+  {
+    "name": "Persian number utility",
+    "slug": "persian-number-utility",
+    "group": "ui",
+    "mark": "PN",
+    "description": "Persian and Arabic digit normalization, number-to-words, Jalali dates, currency, and Iranian identifier validation"
+  },
+  {
+    "name": "Flutter design system from design.md",
+    "slug": "flutter-design-system-from-design-md",
+    "group": "ui",
+    "mark": "DS",
+    "description": "turning a `design.md` spec into Flutter theme tokens, components, states, and validation checks"
+  },
+  {
+    "name": "Flutter expert tips",
+    "slug": "flutter-expert-tips",
+    "group": "performance",
+    "mark": "ET",
+    "description": "practical implementation, debugging, refactoring, and modernization"
+  },
+  {
+    "name": "Flutter concurrency, memory & performance",
+    "slug": "flutter-concurrency-memory-performance",
+    "group": "performance",
+    "mark": "CM",
+    "description": "isolates, async workflows, lifecycle management, and resource efficiency"
+  },
+  {
+    "name": "Flutter caching",
+    "slug": "flutter-caching-engineering",
+    "group": "performance",
+    "mark": "CA",
+    "description": "cache policy, invalidation, offline data, HTTP freshness, and resource bounds"
+  },
+  {
+    "name": "Mobile API caching",
+    "slug": "mobile-api-caching",
+    "group": "performance",
+    "mark": "MA",
+    "description": "cache strategy, HTTP semantics, offline synchronization, and account isolation for iOS, Android, Flutter, React Native, and Kotlin Multiplatform"
+  },
+  {
+    "name": "Mobile app shrinking & release optimization",
+    "slug": "mobile-app-shrinking-and-release-optimization",
+    "group": "performance",
+    "mark": "MA",
+    "description": "R8 keep rules, resource and dependency reduction, native symbols, app thinning, tree shaking, and release validation across Android, iOS, Flutter, React Native, and Kotlin Multiplatform"
+  },
+  {
+    "name": "Flutter jank optimization",
+    "slug": "flutter-performance-jank-optimization",
+    "group": "performance",
+    "mark": "JO",
+    "description": "profiling and fixing dropped frames, slow scrolling, and latency"
+  },
+  {
+    "name": "Flutter UI performance",
+    "slug": "flutter-ui-performance-engineering",
+    "group": "performance",
+    "mark": "UP",
+    "description": "frame-budget analysis, rebuild, layout, paint, and raster optimization, and production profiling",
+    "featured": true
+  },
+  {
+    "name": "Flutter memory leaks",
+    "slug": "flutter-memory-leak-engineering",
+    "group": "performance",
+    "mark": "ML",
+    "description": "lifecycle defects, leak tracking, and regression prevention"
+  },
+  {
+    "name": "Flutter Squadron concurrency",
+    "slug": "flutter-squadron-concurrency-engineering",
+    "group": "performance",
+    "mark": "SC",
+    "description": "workers, worker pools, cancellation, and web workers"
+  },
+  {
+    "name": "Flutter Firebase Analytics",
+    "slug": "flutter-firebase-analytics",
+    "group": "observability",
+    "mark": "FA",
+    "description": "product-event schemas, consent, identity, screen and ecommerce measurement, DebugView, and reporting quality"
+  },
+  {
+    "name": "Flutter Sentry",
+    "slug": "flutter-sentry-engineering",
+    "group": "observability",
+    "mark": "SE",
+    "description": "crash reporting, tracing, symbolication, privacy, and production observability"
+  },
+  {
+    "name": "Flutter production logging",
+    "slug": "flutter-production-logging",
+    "group": "observability",
+    "mark": "PL",
+    "description": "structured, privacy-conscious diagnostics and error reporting"
+  },
+  {
+    "name": "Flutter Firebase Messaging",
+    "slug": "flutter-firebase-messaging",
+    "group": "platform",
+    "mark": "FM",
+    "description": "FCM delivery across Android, iOS, macOS, and web"
+  },
+  {
+    "name": "Flutter Dio",
+    "slug": "flutter-dio-engineering",
+    "group": "platform",
+    "mark": "DI",
+    "description": "production HTTP clients, auth, retries, transfers, and observability",
+    "featured": true
+  },
+  {
+    "name": "Flutter Dio cache interceptor",
+    "slug": "flutter-dio-cache-interceptor-engineering",
+    "group": "platform",
+    "mark": "DC",
+    "description": "HTTP caching, revalidation, store selection, offline fallback, key isolation, and invalidation with `dio_cache_interceptor`"
+  },
+  {
+    "name": "Flutter go_router",
+    "slug": "flutter-go-router-engineering",
+    "group": "platform",
+    "mark": "GR",
+    "description": "routing, deep links, redirects, nested navigation, and web URLs",
+    "featured": true
+  },
+  {
+    "name": "Flutter app links",
+    "slug": "flutter-app-links-deep-link-engineering",
+    "group": "platform",
+    "mark": "AL",
+    "description": "Universal Links, Android App Links, and secure link delivery"
+  },
+  {
+    "name": "Flutter url_launcher",
+    "slug": "flutter-url-launcher-engineering",
+    "group": "platform",
+    "mark": "UL",
+    "description": "external URI handling across platforms"
+  },
+  {
+    "name": "Flutter share_plus",
+    "slug": "flutter-share-plus-engineering",
+    "group": "platform",
+    "mark": "SP",
+    "description": "cross-platform text, URI, file, and generated-content sharing"
+  },
+  {
+    "name": "Flutter WebView",
+    "slug": "flutter-webview-production-engineering",
+    "group": "platform",
+    "mark": "WE",
+    "description": "embedded web content, navigation policy, security, and lifecycle"
+  },
+  {
+    "name": "Flutter local notifications",
+    "slug": "flutter-local-notifications-production-engineering",
+    "group": "platform",
+    "mark": "LN",
+    "description": "permissions, scheduling, time zones, interactions, and recovery"
+  },
+  {
+    "name": "Flutter permission_handler",
+    "slug": "flutter-permission-handler-engineering",
+    "group": "platform",
+    "mark": "PH",
+    "description": "runtime permissions, platform configuration, and privacy-aware flows"
+  },
+  {
+    "name": "Flutter Supabase",
+    "slug": "flutter-supabase-engineering",
+    "group": "storage",
+    "mark": "SU",
+    "description": "Auth, row-level security, database access, Realtime, Storage, Edge Functions, and production security"
+  },
+  {
+    "name": "Flutter Drift",
+    "slug": "flutter-drift-persistence-engineering",
+    "group": "storage",
+    "mark": "DR",
+    "description": "relational persistence, reactive queries, migrations, concurrency, and cross-platform SQLite"
+  },
+  {
+    "name": "Flutter Hive",
+    "slug": "flutter-hive-persistence-engineering",
+    "group": "storage",
+    "mark": "HI",
+    "description": "local persistence, schema changes, encryption, and recovery"
+  },
+  {
+    "name": "hydrated_bloc",
+    "slug": "hydrated-bloc",
+    "group": "storage",
+    "mark": "HB",
+    "description": "Bloc and Cubit state persistence, keys, schema evolution, security, and testing"
+  },
+  {
+    "name": "Flutter path_provider",
+    "slug": "flutter-path-provider-production-storage",
+    "group": "storage",
+    "mark": "PP",
+    "description": "durable filesystem storage and cleanup"
+  },
+  {
+    "name": "Flutter get_it & injectable",
+    "slug": "flutter-get-it-injectable-dependency-injection",
+    "group": "storage",
+    "mark": "GI",
+    "description": "dependency lifetimes, scopes, startup, and testing"
+  },
+  {
+    "name": "Flutter secure storage",
+    "slug": "flutter-secure-storage-security-engineering",
+    "group": "security",
+    "mark": "SS",
+    "description": "protected credentials and platform key stores"
+  },
+  {
+    "name": "Flutter application security",
+    "slug": "flutter-application-security-engineering",
+    "group": "security",
+    "mark": "AS",
+    "description": "application security reviews and remediation"
+  },
+  {
+    "name": "Flutter app hardening",
+    "slug": "flutter-app-hardening-reverse-engineering",
+    "group": "security",
+    "mark": "AH",
+    "description": "reverse-engineering resistance, tamper protection, and secure releases"
+  },
+  {
+    "name": "Test before deploy",
+    "slug": "test-before-deploy",
+    "group": "testing",
+    "mark": "TB",
+    "description": "release-ready test selection using the \"34 Test Before Deploy\" taxonomy"
+  }
+];
 
 const selectedSkills = new Set();
 
-const categoryGrid = document.querySelector('#category-grid');
-categoryGrid.innerHTML = categories.map(([name, icon, description, count], index) => `<article class="category-card reveal" style="animation-delay:${index * 0.08}s"><span class="category-count">${count}${count.includes('area') ? '' : ' skills'}</span><div class="category-icon">${icon}</div><h3>${name}</h3><p>${description}</p></article>`).join('');
-
-const filters = ['All', ...new Set(skills.map(skill => skill.group))];
-const filterWrap = document.querySelector('#filter-wrap');
-let activeFilter = 'All';
-let activeCommand = 'curl';
-filterWrap.innerHTML = filters.map((filter, index) => `<button class="filter-button${index === 0 ? ' active' : ''}" type="button" data-filter="${filter}">${filter}</button>`).join('');
-
-const grid = document.querySelector('#skill-grid');
-const emptyState = document.querySelector('#empty-state');
-const search = document.querySelector('#skill-search');
-
-function renderSkills() {
-  const query = search.value.trim().toLowerCase();
-  const visible = skills.filter(skill => (activeFilter === 'All' || skill.group === activeFilter) && [skill.name, skill.group, skill.description].some(value => value.toLowerCase().includes(query)));
-  grid.innerHTML = visible.map(skill => `<button class="skill-card${selectedSkills.has(skill.name) ? ' selected' : ''}" type="button" data-skill="${skill.name}" aria-pressed="${selectedSkills.has(skill.name)}"><div class="skill-card-top"><span class="skill-logo">${skill.icon}</span><span class="skill-tag">${skill.group}</span></div><h3>${skill.name}${skill.featured ? ' <span class="featured-star">✦</span>' : ''}</h3><p>${skill.description}</p><span class="skill-select-mark" aria-hidden="true">✓</span></button>`).join('');
-  emptyState.hidden = visible.length > 0;
-  updateSelectionBar();
+function escapeHtml(value) {
+  return String(value).replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]));
 }
 
+function sentence(value) {
+  return value.charAt(0).toUpperCase() + value.slice(1);
+}
+
+function skillCount(groupId) {
+  return skills.filter(skill => skill.group === groupId).length;
+}
+
+function countLabel(count) {
+  return `${count} ${count === 1 ? 'skill' : 'skills'}`;
+}
+
+document.querySelector('[data-stat="skills"]').textContent = String(skills.length);
+document.querySelector('[data-stat="collections"]').textContent = String(categories.length);
+document.querySelectorAll('[data-count]').forEach(element => {
+  element.textContent = countLabel(skillCount(element.dataset.count));
+});
+
+const categoryGrid = document.querySelector('#category-grid');
+categoryGrid.innerHTML = categories.map((category, index) => `<a class="category-card reveal" style="animation-delay:${index * 0.05}s" href="#group-${category.id}" data-group="${category.id}"><span class="category-count">${countLabel(skillCount(category.id))}</span><span class="category-icon" aria-hidden="true">${category.icon}</span><h3>${escapeHtml(category.short)}</h3><p>${escapeHtml(category.description)}</p></a>`).join('');
+
+const filterWrap = document.querySelector('#filter-wrap');
+let activeFilter = 'all';
+let activeCommand = 'curl';
+const filters = [{ id: 'all', short: 'All', count: skills.length }, ...categories.map(category => ({ id: category.id, short: category.short, count: skillCount(category.id) }))];
+filterWrap.innerHTML = filters.map(filter => `<button class="filter-button${filter.id === 'all' ? ' active' : ''}" type="button" data-filter="${filter.id}" aria-pressed="${filter.id === 'all'}">${escapeHtml(filter.short)} <span class="filter-count">${filter.count}</span></button>`).join('');
+
+const groupsRoot = document.querySelector('#skill-groups');
+const emptyState = document.querySelector('#empty-state');
+const catalogCount = document.querySelector('#catalog-count');
+const search = document.querySelector('#skill-search');
 const selectionBar = document.querySelector('#selection-bar');
 const selectionCount = document.querySelector('#selection-count');
 const commandPanel = document.querySelector('#command-panel');
@@ -112,14 +554,54 @@ const commandOutput = document.querySelector('#install-commands code');
 const commandNote = document.querySelector('#command-note');
 const copyStatus = document.querySelector('#copy-status');
 
+function categoryOf(skill) {
+  return categories.find(category => category.id === skill.group);
+}
+
+function matches(skill, query) {
+  if (!query) return true;
+  const category = categoryOf(skill);
+  return [skill.name, skill.slug, skill.description, category.short, category.name].some(value => value.toLowerCase().includes(query));
+}
+
+function renderSkills() {
+  const query = search.value.trim().toLowerCase();
+  let shown = 0;
+  groupsRoot.innerHTML = categories.filter(category => activeFilter === 'all' || category.id === activeFilter).map(category => {
+    const visible = skills.filter(skill => skill.group === category.id && matches(skill, query));
+    if (!visible.length) return '';
+    shown += visible.length;
+    const cards = visible.map(skill => {
+      const selected = selectedSkills.has(skill.slug);
+      const source = `https://github.com/${repository}/blob/main/skills/${skill.slug}/SKILL.md`;
+      return `<article class="skill-card${selected ? ' selected' : ''}"><button class="skill-hit" type="button" data-skill="${skill.slug}" aria-pressed="${selected}"><span class="skill-top"><span class="skill-logo" aria-hidden="true">${escapeHtml(skill.mark)}</span><span class="skill-select-mark" aria-hidden="true">✓</span></span><h3>${escapeHtml(skill.name)}${skill.featured ? ' <span class="featured-star" aria-hidden="true">✦</span>' : ''}</h3><p>${escapeHtml(sentence(skill.description))}</p></button><div class="skill-foot"><span class="skill-slug" title="${escapeHtml(skill.slug)}">${escapeHtml(skill.slug)}</span><a class="skill-source" href="${source}" target="_blank" rel="noreferrer" aria-label="Source for ${escapeHtml(skill.name)}">Source</a></div></article>`;
+    }).join('');
+    return `<section class="skill-group" id="group-${category.id}"><div class="group-kicker"><h3><span class="group-mark" aria-hidden="true">${category.icon}</span><span class="group-name">${escapeHtml(category.name)}</span></h3><p>${countLabel(visible.length)}</p></div><div class="skill-grid">${cards}</div></section>`;
+  }).join('');
+  emptyState.hidden = shown > 0;
+  catalogCount.textContent = query || activeFilter !== 'all' ? `Showing ${shown} of ${skills.length}` : countLabel(skills.length);
+  updateSelectionBar();
+}
+
+function syncFilters() {
+  document.querySelectorAll('.filter-button').forEach(item => {
+    const on = item.dataset.filter === activeFilter;
+    item.classList.toggle('active', on);
+    item.setAttribute('aria-pressed', String(on));
+  });
+}
+
 function updateSelectionBar() {
   const count = selectedSkills.size;
-  selectionCount.textContent = count;
+  selectionCount.textContent = String(count);
   selectionBar.hidden = count === 0;
+  document.body.classList.toggle('has-selection', count > 0);
+  if (count === 0) commandPanel.hidden = true;
+  else if (!commandPanel.hidden) renderCommand();
 }
 
 function buildInstallCommands() {
-  const dirs = [...selectedSkills].map(name => skillFiles[name]);
+  const dirs = [...selectedSkills];
   if (activeCommand === 'npx') return `npx degit ${repository}/skills ./selected-skills`;
   if (activeCommand === 'git') {
     return [
@@ -142,12 +624,33 @@ function renderCommand() {
     : 'These commands download the selected skill folders into <code>./selected-skills</code>. Each folder contains <code>SKILL.md</code>. Copy a folder into your AI coding tool’s skills directory.';
 }
 
-grid.addEventListener('click', event => {
-  const card = event.target.closest('[data-skill]');
-  if (!card) return;
-  const name = card.dataset.skill;
-  selectedSkills.has(name) ? selectedSkills.delete(name) : selectedSkills.add(name);
+function scrollToGroup(id) {
+  if (activeFilter !== 'all' || search.value) {
+    activeFilter = 'all';
+    search.value = '';
+    syncFilters();
+    renderSkills();
+  }
+  const motion = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+  document.getElementById(id)?.scrollIntoView({ behavior: motion, block: 'start' });
+}
+
+groupsRoot.addEventListener('click', event => {
+  const hit = event.target.closest('[data-skill]');
+  if (!hit) return;
+  const slug = hit.dataset.skill;
+  selectedSkills.has(slug) ? selectedSkills.delete(slug) : selectedSkills.add(slug);
   renderSkills();
+  document.querySelector(`[data-skill="${CSS.escape(slug)}"]`)?.focus();
+});
+
+document.addEventListener('click', event => {
+  const link = event.target.closest('a[href^="#group-"]');
+  if (!link) return;
+  event.preventDefault();
+  const id = link.getAttribute('href').slice(1);
+  scrollToGroup(id);
+  history.replaceState(null, '', `#${id}`);
 });
 
 document.querySelector('#clear-selection').addEventListener('click', () => {
@@ -159,7 +662,8 @@ document.querySelector('#clear-selection').addEventListener('click', () => {
 document.querySelector('#generate-commands').addEventListener('click', () => {
   renderCommand();
   commandPanel.hidden = false;
-  commandPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  const motion = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+  commandPanel.scrollIntoView({ behavior: motion, block: 'nearest' });
 });
 
 document.querySelector('#command-tabs').addEventListener('click', event => {
@@ -189,12 +693,11 @@ filterWrap.addEventListener('click', event => {
   const button = event.target.closest('[data-filter]');
   if (!button) return;
   activeFilter = button.dataset.filter;
-  document.querySelectorAll('.filter-button').forEach(item => item.classList.toggle('active', item === button));
+  syncFilters();
   renderSkills();
 });
 
 search.addEventListener('input', renderSkills);
-renderSkills();
 
 const menuButton = document.querySelector('.menu-button');
 menuButton.addEventListener('click', () => {
@@ -202,3 +705,6 @@ menuButton.addEventListener('click', () => {
   menuButton.setAttribute('aria-expanded', String(!open));
   document.querySelector('.nav-links').classList.toggle('mobile-open', !open);
 });
+
+renderSkills();
+if (location.hash.startsWith('#group-')) scrollToGroup(location.hash.slice(1));

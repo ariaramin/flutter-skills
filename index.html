@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#f5f7fa" />
     <meta name="description" content="Production-ready Flutter and Dart skills for AI coding tools." />
+    <meta property="og:title" content="Flutter Skills — Production knowledge, packaged" />
+    <meta property="og:description" content="Production-ready Flutter and Dart skills for AI coding tools." />
+    <meta property="og:image" content="https://ariaramin.github.io/flutter-skills/assets/social-preview.jpg" />
+    <meta property="og:url" content="https://ariaramin.github.io/flutter-skills/" />
+    <meta name="twitter:card" content="summary_large_image" />
     <title>Flutter Skills — Production knowledge, packaged</title>
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%2307111f'/%3E%3Ctext x='32' y='40' text-anchor='middle' font-family='Arial' font-size='25' font-weight='700' fill='white'%3EFS%3C/text%3E%3C/svg%3E" />
     <link rel="stylesheet" href="styles.css" />
@@ -38,8 +43,8 @@
             <a class="button button-quiet" href="https://github.com/ariaramin/flutter-skills" target="_blank" rel="noreferrer">GitHub <span>↗</span></a>
           </div>
           <dl class="hero-stats">
-            <div><dt>70</dt><dd>portable skills</dd></div>
-            <div><dt>7</dt><dd>core disciplines</dd></div>
+            <div><dt data-stat="skills">70</dt><dd>portable skills</dd></div>
+            <div><dt data-stat="collections">8</dt><dd>collections</dd></div>
             <div><dt>MIT</dt><dd>open license</dd></div>
           </dl>
         </div>
@@ -68,14 +73,14 @@
 
       <section class="page-shell featured-section">
         <article class="featured-lead reveal">
-          <span class="pack-label">Featured collection · 04 skills</span>
+          <span class="pack-label">Foundations · <span data-count="foundations">16 skills</span></span>
           <div class="pack-symbol">⌘</div>
           <div><h3>Build the foundation<br /><em>once.</em></h3><p>Architecture, immutable state, environments, and the practices that keep a Flutter codebase easy to change.</p></div>
-          <a href="#toolbox" aria-label="Browse foundation skills">Explore <span>↗</span></a>
+          <a href="#group-foundations" aria-label="Browse foundation skills">Explore <span>↗</span></a>
         </article>
         <div class="featured-side">
-          <article class="mini-pack reveal reveal-delay"><span>UI & experience</span><strong>Make every frame feel intentional.</strong><small>07 skills</small></article>
-          <article class="mini-pack mini-pack-dark reveal reveal-delay-2"><span>Production</span><strong>Profile, protect, test, and ship.</strong><small>13 skills</small></article>
+          <a class="mini-pack reveal reveal-delay" href="#group-ui"><span>UI & experience</span><strong>Make every frame feel intentional.</strong><small data-count="ui">22 skills</small></a>
+          <a class="mini-pack mini-pack-dark reveal reveal-delay-2" href="#group-performance"><span>Performance</span><strong>Keep the frame budget honest.</strong><small data-count="performance">9 skills</small></a>
         </div>
       </section>
 
@@ -83,15 +88,16 @@
         <div class="page-shell">
           <div class="section-intro catalog-intro reveal">
             <div><p class="eyebrow">02 · Skill catalog</p><h2>Choose what<br /><em>you need.</em></h2></div>
-            <p>Select any combination. We’ll generate install commands for exactly those skill folders.</p>
+            <p>Every skill in the repository, in the same groups as the README catalog. Select any combination and copy install commands for those folders.</p>
           </div>
 
           <div class="catalog-controls">
             <label class="search-wrap"><span aria-hidden="true">⌕</span><input id="skill-search" type="search" placeholder="Search the catalog" aria-label="Search skills" /></label>
             <div class="filter-wrap" id="filter-wrap" role="group" aria-label="Filter skills"></div>
           </div>
+          <p class="catalog-count" id="catalog-count" aria-live="polite"></p>
 
-          <div class="skill-grid" id="skill-grid"></div>
+          <div id="skill-groups"></div>
           <p class="empty-state" id="empty-state" hidden>No skills match that search.</p>
 
           <div class="selection-bar" id="selection-bar" hidden aria-live="polite">

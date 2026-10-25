@@ -4,7 +4,7 @@ A collection of production-focused skills for AI coding assistants working on Fl
 
 These folders are not Flutter packages. Nothing in this repository belongs in an application's `pubspec.yaml`. Installation for Cursor, Claude Code, Codex, GitHub Copilot, Gemini CLI, OpenCode, and other agents is in [INSTALL.md](INSTALL.md).
 
-![Flutter Skills social preview](assets/social-preview.png)
+![Flutter Skills social preview](assets/social-preview.jpg)
 
 ## Contents
 
@@ -221,7 +221,8 @@ skills/<name>/SKILL.md           Skill manifest
 skills/<name>/references/        Optional supporting guidance
 index.html, styles.css, script.js
                                  Static landing page
-assets/social-preview.png        Social preview image
+.nojekyll                        GitHub Pages: serve files as-is
+assets/social-preview.jpg        Social preview image
 .github/workflows/validate.yml   Manifest check
 .github/ISSUE_TEMPLATE/          Issue forms, including skill requests
 INSTALL.md                       Agent installation guide
@@ -235,7 +236,7 @@ There is no root `pubspec.yaml` and no GitHub Actions workflow other than skill 
 
 [`index.html`](index.html), [`styles.css`](styles.css), and [`script.js`](script.js) are a dependency-free catalog page. It has no build step.
 
-The cards and download paths come from the `skills`, `skillFiles`, `categories`, and `repository` values at the top of `script.js`. That card list is a curated subset of the 70 folders in this repository. The "70" shown in the page hero is hardcoded in `index.html`; update it when the folder count changes.
+The cards and download paths come from `skills` and `categories` in `script.js`. That list matches the [skill catalog](#skill-catalog): every folder, grouped the same way. `slug` is the folder name under `skills/`. Hero and collection counts are filled from this list.
 
 ### Run locally
 
@@ -250,8 +251,7 @@ Then open `http://localhost:8000`.
 ### Change the page
 
 - Edit the visible copy in `index.html`. The page credits Aria Ramin and links to this GitHub repository.
-- Edit `skills` and `skillFiles` together when adding or renaming a card. `skillFiles` must use the real folder name.
-- Edit `categories` for the overview cards.
+- Edit `skills` and `categories` together when adding or renaming a card. `slug` must be the real folder name.
 - Edit the custom properties at the top of `styles.css` to retheme the page.
 - Change `repository` in `script.js` if the GitHub repository moves. The install commands use that value.
 
@@ -259,7 +259,7 @@ Selecting cards generates `curl`, `wget`, `npx degit`, and Git sparse-checkout c
 
 ### GitHub Pages
 
-This repository does not publish the page from GitHub Actions. To serve it, open **Settings → Pages**, choose **Deploy from a branch**, select `main` and `/ (root)`, then save. GitHub Pages serves `index.html` from the repository root.
+The site is published from the `main` branch root at <https://ariaramin.github.io/flutter-skills/>. [`.nojekyll`](.nojekyll) keeps GitHub Pages from running Jekyll over the skill folders. A push to `main` updates the site.
 
 ## Validation
 
