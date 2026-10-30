@@ -7,7 +7,7 @@ Pick one scope:
 - **This Flutter app.** Put the skill in the app repository. Teammates get it when they clone the app.
 - **Every project on this machine.** Put the skill in your home directory. It stays on your computer.
 
-Install the skills you expect to use. Installing all 70 makes the agent's skill list long.
+Install the skills you expect to use. Installing all 71 makes the agent's skill list long.
 
 Replace `flutter-go-router-engineering` in the commands below with any folder name from the [catalog](README.md#skill-catalog).
 

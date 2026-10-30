@@ -24,7 +24,7 @@ These folders are not Flutter packages. Nothing in this repository belongs in an
 
 ## How a skill works
 
-The repository contains **70 skill folders** under [`skills/`](skills). Every folder has a `SKILL.md` manifest with YAML frontmatter. The `description` field is the trigger: a compatible assistant uses it to decide when the skill applies. The rest of the file is the operating guidance.
+The repository contains **71 skill folders** under [`skills/`](skills). Every folder has a `SKILL.md` manifest with YAML frontmatter. The `description` field is the trigger: a compatible assistant uses it to decide when the skill applies. The rest of the file is the operating guidance.
 
 Supporting material stays inside that folder. Open it only when the manifest points to it.
 
@@ -148,6 +148,7 @@ Each link opens that skill's `SKILL.md`.
 - [Lottie for Flutter](skills/lottie-flutter/SKILL.md) — pure Dart vector animations, composition caching, frame-rate throttling, dynamic delegates, marker playback, and list performance with `lottie`.
 - [Flutter Confetti](skills/flutter-confetti-engineering/SKILL.md) — lifecycle-safe, accessible celebration effects and particle performance.
 - [Flutter native splash](skills/flutter-native-splash-engineering/SKILL.md) — Android, iOS, and web launch resources, transitions, flavors, and startup behavior.
+- [Flutter app icon](skills/flutter-app-icon-engineering/SKILL.md) — cross-platform launcher icon design, adaptive and themed Android icons, Apple asset catalogs, web, desktop, and automation.
 - [Flutter image performance](skills/flutter-image-performance/SKILL.md) — image loading, decoding, caching, rendering, and memory use.
 - [Flutter image_picker](skills/flutter-image-picker-production-engineering/SKILL.md) — photo and video acquisition, lost-data recovery, platform behavior, and media safety.
 - [document_scan for Flutter](skills/document-scan-flutter/SKILL.md) — headless document detection, perspective correction, live camera frames, and scan testing on Android and iOS.

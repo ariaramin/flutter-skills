@@ -191,6 +191,13 @@ const skills = [
     "description": "Android, iOS, and web launch resources, transitions, flavors, and startup behavior"
   },
   {
+    "name": "Flutter app icon",
+    "slug": "flutter-app-icon-engineering",
+    "group": "ui",
+    "mark": "IC",
+    "description": "cross-platform launcher icon design, adaptive and themed Android icons, Apple asset catalogs, web, desktop, and automation"
+  },
+  {
     "name": "Flutter image performance",
     "slug": "flutter-image-performance",
     "group": "ui",
