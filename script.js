@@ -56,6 +56,13 @@ const skills = [
     "featured": true
   },
   {
+    "name": "Flutter plugin-style architecture",
+    "slug": "flutter-plugin-style-architecture",
+    "group": "foundations",
+    "mark": "PA",
+    "description": "compile-time assembled, contract-driven modular architecture, lifecycle orchestration, and cross-platform capability abstraction"
+  },
+  {
     "name": "Design patterns",
     "slug": "shvets-design-patterns",
     "group": "foundations",

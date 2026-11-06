@@ -24,7 +24,7 @@ These folders are not Flutter packages. Nothing in this repository belongs in an
 
 ## How a skill works
 
-The repository contains **71 skill folders** under [`skills/`](skills). Every folder has a `SKILL.md` manifest with YAML frontmatter. The `description` field is the trigger: a compatible assistant uses it to decide when the skill applies. The rest of the file is the operating guidance.
+The repository contains **72 skill folders** under [`skills/`](skills). Every folder has a `SKILL.md` manifest with YAML frontmatter. The `description` field is the trigger: a compatible assistant uses it to decide when the skill applies. The rest of the file is the operating guidance.
 
 Supporting material stays inside that folder. Open it only when the manifest points to it.
 
@@ -126,6 +126,7 @@ Each link opens that skill's `SKILL.md`.
 - [Dart & Flutter FFI](skills/dart-flutter-ffi-systems-engineering/SKILL.md) — native integration, memory ownership, ABI safety, and platform packaging.
 - [Dart meta](skills/dart-meta/SKILL.md) — annotations, API contracts, immutability, and analyzer-guided modernization.
 - [Senior Flutter architecture](skills/senior-flutter-architecture/SKILL.md) — production Flutter/Dart architecture with explicit trade-offs.
+- [Flutter plugin-style architecture](skills/flutter-plugin-style-architecture/SKILL.md) — compile-time assembled, contract-driven modular architecture, lifecycle orchestration, and cross-platform capability abstraction.
 - [Design patterns](skills/shvets-design-patterns/SKILL.md) — 22 classic object-oriented patterns, with source-backed decisions, examples, and trade-offs.
 - [Senior mobile architecture](skills/senior-mobile-architecture/SKILL.md) — architecture reviews and refactoring across iOS, Android, and cross-platform apps.
 - [Flutter production engineering](skills/flutter-production-engineering/SKILL.md) — architecture, performance, scalability, cross-platform behavior, testing, profiling, and maintainability.
